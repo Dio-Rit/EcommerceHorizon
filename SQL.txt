@@ -1,0 +1,181 @@
+CREATE TABLE usuario(
+	id SERIAL NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	login VARCHAR(50) NOT NULL,
+	senha VARCHAR(50) NOT NULL,
+	x VARCHAR(10),
+	PRIMARY KEY (id));
+
+
+
+CREATE TABLE fornecedor(
+	id SERIAL NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	cnpj VARCHAR(18) NOT NULL,
+	telefone VARCHAR(15) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	x VARCHAR(10),
+	PRIMARY KEY (id));
+
+
+
+CREATE TABLE cliente(
+	id SERIAL NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	cpf VARCHAR(14) NOT NULL,
+	data_nsci VARCHAR(20) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	descricao VARCHAR(150),
+	x VARCHAR(10),
+	PRIMARY KEY (id));
+
+
+CREATE TABLE produto(
+	id SERIAL NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	quantidade INT NOT NULL,
+	preco DECIMAL(10,2) NOT NULL,
+	descricao VARCHAR(150),
+	x VARCHAR(10),
+	PRIMARY KEY (id));
+
+CREATE TABLE compra(
+	id SERIAL NOT NULL,
+	data DATE,
+	valor_total DECIMAL (10,2),
+	x VARCHAR(10),
+	fornecedor_id INT NOT NULL,
+	PRIMARY KEY (ID),
+	CONSTRAINT fk_compra_fornecedor FOREIGN KEY (fornecedor_id) REFERENCES fornecedor(id));
+
+
+CREATE TABLE venda(
+	id SERIAL NOT NULL,
+	data DATE,
+	valor_total DECIMAL(10,2),
+	x VARCHAR (10),
+	cliente_id INT NOT NULL,
+	PRIMARY KEY (id),
+	CONSTRAINT fk_venda_cliente FOREIGN KEY (cliente_id) REFERENCES cliente(id));
+
+
+CREATE TABLE compra_produto(
+	id SERIAL NOT NULL,
+	quantidade INT,
+	preco DECIMAL (10,2),
+	produto_id INT NOT NULL,
+	compra_id INT NOT NULL,
+	compra_fornecedor_id INT NOT NULL,
+	PRIMARY KEY (id),
+	CONSTRAINT fk_compra_produto_produto FOREIGN KEY (produto_id) REFERENCES produto(id),
+	CONSTRAINT fk_compra_produto_compra FOREIGN KEY (compra_id) REFERENCES compra(id),
+	CONSTRAINT fk_compra_produto_compra_fornecedor FOREIGN KEY (compra_fornecedor_id) REFERENCES fornecedor(id));
+
+CREATE TABLE venda_produto(
+	id SERIAL NOT NULL,
+	quantidade INT,
+	preco DECIMAL (10,2),
+	produto_id INT NOT NULL,
+	venda_id INT NOT NULL,
+	venda_cliente_id INT NOT NULL,
+	PRIMARY KEY (id),
+	CONSTRAINT fk_venda_produto_produto FOREIGN KEY (produto_id) REFERENCES produto(id),
+	CONSTRAINT fk_venda_produto_venda FOREIGN KEY (venda_id) REFERENCES venda(id),
+	CONSTRAINT fk_venda_produto_venda_cliente FOREIGN KEY (venda_cliente_id) REFERENCES cliente(id));
+
+
+INSERT INTO usuario VALUES (DEFAULT, 'yNot','admin','21232f297a57a5a743894a0e4a801fc3','A');
+INSERT INTO usuario VALUES (DEFAULT, 'usuarioDois','usu2','2fb6c8d2f3842a5ceaa9bf320e649ff0','A');
+INSERT INTO usuario VALUES (DEFAULT, 'usuarioTres','usu3','5a54c609c08a0ab3f7f8eef1365bfda6','A');
+INSERT INTO usuario VALUES (DEFAULT, 'usuarioQuatro','usu4','ddd0fbf933b170eb6d90987a67d0a5d','A');
+INSERT INTO usuario VALUES (DEFAULT, 'usuarioCinco','usu5','b65933df3421cf1bdf4ff082ffc8901','A');
+
+INSERT INTO fornecedor VALUES (DEFAULT, 'forneUm','45.522.245/0001-17','(51)99504-5545','forne1@gmail.com','A');
+INSERT INTO fornecedor VALUES (DEFAULT, 'forneDois','45.522.245/0001-17','(15)61456-1561','forne2@gmail.com','A');
+INSERT INTO fornecedor VALUES (DEFAULT, 'forneTres','45.522.245/0001-17','(51)56156-1561','forne3@gmail.com','A');
+INSERT INTO fornecedor VALUES (DEFAULT, 'forneQuatro','45.522.245/0001-17','(61)61561-5615','forne4@gmail.com','A');
+INSERT INTO fornecedor VALUES (DEFAULT, 'forneCinco','45.522.245/0001-17','(45)66514-5615','forne5@gmail.com','A');
+
+INSERT INTO cliente VALUES (DEFAULT, 'ClienteUm','118.687.466-07','19/05/2018','cliente1@gmail.com','cliente1','A');
+INSERT INTO cliente VALUES (DEFAULT, 'ClienteDois','118.687.466-07','19/05/2018','cliente2@gmail.com','cliente2','A');
+INSERT INTO cliente VALUES (DEFAULT, 'clienteTres','118.687.466-07','19/05/2018','cliente3@gmail.com','cliente3','A');
+INSERT INTO cliente VALUES (DEFAULT, 'ClienteQuatro','118.687.466-07','19/05/2018','cliente4@gmail.com','cliente4','A');
+INSERT INTO cliente VALUES (DEFAULT, 'ClienteCinco','118.687.466-07','19/05/2018','cliente5@gmail.com','cliente5','A');
+
+INSERT INTO produto VALUES (DEFAULT, 'ProdutoUm','10','10.0','produto1','A');
+INSERT INTO produto VALUES (DEFAULT, 'ProdutoDois','10','10.0','produto2','A');
+INSERT INTO produto VALUES (DEFAULT, 'ProdutoTres','10','10.0','produto3','A');
+INSERT INTO produto VALUES (DEFAULT, 'ProdutoQuatro','10','10.0','produto4','A');
+INSERT INTO produto VALUES (DEFAULT, 'ProdutoCinco','10','10.0','produto5','A');
+
+INSERT INTO compra VALUES (DEFAULT, '2019-06-23','100.0','A','1');
+INSERT INTO compra VALUES (DEFAULT, '2019-06-24','100.0','A','2');
+INSERT INTO compra VALUES (DEFAULT, '2019-06-25','100.0','A','3');
+INSERT INTO compra VALUES (DEFAULT, '2019-06-26','100.0','A','4');
+INSERT INTO compra VALUES (DEFAULT, '2019-06-27','100.0','A','5');
+
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','1','1','1');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','2','1','1');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','3','1','1');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','4','1','1');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','5','1','1');
+
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','1','2','2');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','2','2','2');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','3','2','2');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','4','2','2');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','5','2','2');
+
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','1','3','3');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','2','3','3');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','3','3','3');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','4','3','3');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','5','3','3');
+
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','1','4','4');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','2','4','4');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','3','4','4');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','4','4','4');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','5','4','4');
+
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','1','5','5');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','2','5','5');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','3','5','5');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','4','5','5');
+INSERT INTO compra_produto VALUES (DEFAULT, '2','10.0','5','5','5');
+
+INSERT INTO venda VALUES (DEFAULT, '2019-06-23','100.0','A','1');
+INSERT INTO venda VALUES (DEFAULT, '2019-06-24','100.0','A','2');
+INSERT INTO venda VALUES (DEFAULT, '2019-06-25','100.0','A','3');
+INSERT INTO venda VALUES (DEFAULT, '2019-06-26','100.0','A','4');
+INSERT INTO venda VALUES (DEFAULT, '2019-06-27','100.0','A','5');
+
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','1','1','1');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','2','1','1');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','3','1','1');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','4','1','1');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','5','1','1');
+
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','1','2','2');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','2','2','2');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','3','2','2');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','4','2','2');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','5','2','2');
+
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','1','3','3');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','2','3','3');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','3','3','3');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','4','3','3');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','5','3','3');
+
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','1','4','4');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','2','4','4');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','3','4','4');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','4','4','4');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','5','4','4');
+
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','1','5','5');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','2','5','5');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','3','5','5');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','4','5','5');
+INSERT INTO venda_produto VALUES (DEFAULT, '2','10.0','5','5','5');
