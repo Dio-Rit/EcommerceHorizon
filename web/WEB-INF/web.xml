@@ -8,6 +8,10 @@
         <servlet-name>AcaoLogin1</servlet-name>
         <servlet-class>Servlet.AcaoLogin1</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Acaologin</servlet-name>
+        <servlet-class>Servlet.Acaologin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AcaoUsuario</servlet-name>
         <url-pattern>/AcaoUsuario</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>AcaoLogin1</servlet-name>
         <url-pattern>/AcaoLogin1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Acaologin</servlet-name>
+        <url-pattern>/Acaologin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author yNot
  */
-public class AcaoLogin1 extends HttpServlet {
+public class Acaologin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +36,10 @@ public class AcaoLogin1 extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AcaoLogin1</title>");            
+            out.println("<title>Servlet Acaologin</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AcaoLogin1 at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Acaologin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +57,7 @@ public class AcaoLogin1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // processRequest(request, response);
     }
 
     /**
@@ -71,21 +71,26 @@ public class AcaoLogin1 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-               String param = request.getParameter("param");
-
+        // processRequest(request, response);
+        
+        String param = request.getParameter("param");
+        
         String Login = request.getParameter("nome");
         String Senha = request.getParameter("senha");
-
-        if (param.equals("Logar")) {
-
-            DAOUsuario c = new DAOUsuario();
-            System.out.println(Login);
+        
+        System.out.println(param);
+        System.out.println(Senha);
+        System.out.println(Login);
+        
+        if(param.equals("Logar")){
             
-            if (c.logar(Login, Senha)) {
+            DAOUsuario du = new DAOUsuario();
+            
+            if(du.logar(Login, Senha)){
                 response.sendRedirect("home.jsp");
+                
             }else{
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("login.jsp"); 
             }
         }
     }

@@ -26,7 +26,7 @@ public class ConexaoBD {
 
             // Carrega Driver do Banco de Dados
             Class.forName(dbdriver);
-
+            System.out.println("Carrega Driver do Banco de Dados");
             if (dbuser.length() != 0) // conexão COM usuário e senha
             {
                 conexao = DriverManager.getConnection(dburl, dbuser, dbsenha);

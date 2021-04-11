@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="generator" content="Hugo 0.80.0">
-        <title>Signin Template · Bootstrap v5.0</title>
+        <title>Horizon - Login</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
 
@@ -55,11 +55,11 @@
     <body class="text-center">
 
         <main class="form-signin">
-            <form method="post" action="/EcommerceHorizon/AcaoLogin1?param=Logar"> 
+            <form method="post" action="/EcommerceHorizon/Acaologin?param=Logar"> 
                 
                 <img class="mb-4" src="img/Logo2.jpg" alt="" width="150">
                 
-                <h2>Ecommerce Horizon</h2>
+                <h2>Horizon</h2>
                 <br>
                 
                 <label for="nome" class="visually-hidden">Email address</label>
