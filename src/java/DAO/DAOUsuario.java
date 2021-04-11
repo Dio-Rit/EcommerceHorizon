@@ -13,6 +13,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -189,5 +190,37 @@ public class DAOUsuario implements IDAO_T<Usuario> {
             System.out.println("Erro ao procurar login = " + e);
         }
         return true;
-    }   
+    }  
+    
+    public ArrayList<Usuario> consultarTodos() {
+
+        ArrayList<Usuario> usuario = new ArrayList();
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "select * "
+                    + "from "
+                    + "usuario "
+                    + "order by nome";
+            ResultSet resultado = st.executeQuery(sql);
+
+            while (resultado.next()) {
+                Usuario c = new Usuario();
+                c.setId(resultado.getInt("id"));
+                c.setNome(resultado.getString("nome")); 
+                c.setLogin(resultado.getString("login"));
+                c.setSenha(resultado.getString("senha"));
+                c.setX(resultado.getString("x"));
+
+                usuario.add(c);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar Usuario: " + e);
+        }
+
+        return usuario;
+    }
 }
+

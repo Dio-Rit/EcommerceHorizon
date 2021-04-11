@@ -44,32 +44,32 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Cadastrar</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="DAOUsuario/ListarUsuarios.jsp">Cliente</a></li>
-                                <li><a class="dropdown-item" href="DAOUsuario/ListarUsuarios.jsp">Fornecedor</a></li>
-                                <li><a class="dropdown-item" href="DAOUsuario/ListarUsuarios.jsp">Produto</a></li>
+                                <li><a class="dropdown-item" href="">Cliente</a></li>
+                                <li><a class="dropdown-item" href="">Fornecedor</a></li>
+                                <li><a class="dropdown-item" href="">Produto</a></li>
                                 <li><a class="dropdown-item" href="DAOUsuario/ListarUsuarios.jsp">Usuário</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Vendas</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="DAOPessoa/ListarPessoas.jsp">Vender</a></li>
-                                <li><a class="dropdown-item" href="DAOPessoa/ListarPessoas.jsp">Listar Vendas</a></li>
+                                <li><a class="dropdown-item" href="">Vender</a></li>
+                                <li><a class="dropdown-item" href="">Listar Vendas</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Compras</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="DAOCategoria/ListarCategorias.jsp">Comprar</a></li>
-                                <li><a class="dropdown-item" href="DAOCategoria/ListarCategorias.jsp">Listar compras</a></li>
+                                <li><a class="dropdown-item" href="">Comprar</a></li>
+                                <li><a class="dropdown-item" href="">Listar compras</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="DAOMovimento/ListarMovimentos.jsp">Clientes</a></li>
-                                <li><a class="dropdown-item" href="DAOMovimento/ListarMovimentos.jsp">Fornecedores</a></li>
-                                <li><a class="dropdown-item" href="DAOMovimento/ListarMovimentos.jsp">Produtos</a></li>
+                                <li><a class="dropdown-item" href="">Clientes</a></li>
+                                <li><a class="dropdown-item" href="">Fornecedores</a></li>
+                                <li><a class="dropdown-item" href="">Produtos</a></li>
                             </ul>
                         </li>
                     </ul>

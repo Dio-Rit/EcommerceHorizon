@@ -1,6 +1,6 @@
 
 
-<%@page import="DAO.UsuarioDAO"%>
+<%@page import="DAO.DAOUsuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entidade.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -73,7 +73,7 @@
                                 </div>
 
                                 <%
-                                    ArrayList<Usuario> usuario = new UsuarioDAO().consultarTodos();
+                                    ArrayList<Usuario> usuario = new DAOUsuario().consultarTodos();
                                 %>
 
                                 <div class="row">
@@ -94,7 +94,7 @@
                                             %>
                                             <tr>
                                                 <td><%= categ.getId()%></td>
-                                                <td><%= categ.getNome()%></td>
+                                                <td><%= categ.getNome() %></td>
                                                 <td><%= categ.getLogin()%></td>
                                                 <td>
                                                     <a href="../AcaoUsuario?param=EdUsuario&id=<%= categ.getId()%>" class="btn btn-success" title="Editar" >
