@@ -1,14 +1,14 @@
 <%-- 
     Document   : index
-    Created on : 22 de mar de 2021, 22:38:07
-    Author     : yNot
+    Created on : Mar 8, 2021, 9:46:02 PM
+    Author     : pretto
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="ISO8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO8859-1">
         <title>JSP Page</title>
     </head>
     <body>

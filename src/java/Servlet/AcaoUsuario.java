@@ -5,9 +5,11 @@
  */
 package Servlet;
 
+import DAO.DAOUsuario;
+import Entidade.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,11 +38,11 @@ public class AcaoUsuario extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AcaoUsuario</title>");            
+            out.println("<title>Servlet AcaoUsuario</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AcaoUsuario teste " + request.getContextPath() + "</h1>");
-            out.println("<h6>Data:" + new Date() + "</h6>");
+            out.println("<h1>Servlet AcaoUsuario at " + request.getContextPath() + "</h1>");
+            out.println("Ação Realizada com sucesso");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +60,44 @@ public class AcaoUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+
+        String param = request.getParameter("param");
+
+        if (param.equals("EdUsuario")) {
+            String id = request.getParameter("id");
+
+            Usuario usu = new DAOUsuario().consultarId(Integer.parseInt(id));
+
+            request.setAttribute("objUsuario", usu);
+            System.out.println(usu.getId());
+
+            encaminharPagina("/DAOUsuario/AtualizaUsuario.jsp", request, response);
+
+        } else if (param.equals("ExcluirUsuario")) {
+
+            DAOUsuario b = new DAOUsuario();
+            b.excluir(Integer.parseInt(request.getParameter("id")));
+            response.sendRedirect("/EcommerceHorizon/DAOUsuario/ListarUsuarios.jsp");
+
+        } else if (param.equals("ListarUsuario")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String nome = request.getParameter("nome");
+            String login = request.getParameter("login");
+            String senha = request.getParameter("senha");
+            String status = request.getParameter("x");
+
+            Usuario tl = new Usuario();
+            tl.setId(id);
+            tl.setNome(nome);
+            tl.setLogin(login);
+            tl.setSenha(senha);
+            tl.setX(status);
+
+            response.sendRedirect("/EcommerceHorizon/DAOUsuario/ListarUsuarios.jsp");
+
+        }
+
     }
 
     /**
@@ -72,7 +111,54 @@ public class AcaoUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // processRequest(request, response);
+
+        String param = request.getParameter("param");
+        String Nome = request.getParameter("Nome");
+        String Login = request.getParameter("Login");
+        String Senha = request.getParameter("Senha");
+
+        if (param.equals("SalvarUsuario")) {
+
+            Usuario u = new Usuario();
+            u.setNome(Nome);
+            u.setLogin(Login);
+            u.setSenha(Senha);
+            u.setX("A");
+
+            DAOUsuario c = new DAOUsuario();
+            c.salvar(u);
+            response.sendRedirect("/EcommerceHorizon/DAOUsuario/ListarUsuarios.jsp");
+
+        } else if (param.equals("EditarUsuario")) {
+
+            Usuario u = new Usuario();
+
+            System.out.println(request.getParameter("id"));
+            System.out.println(request.getParameter("Nome"));
+            System.out.println(request.getParameter("Login"));
+
+            u.setId(Integer.parseInt(request.getParameter("id")));
+            u.setNome(request.getParameter("Nome"));
+            u.setLogin(request.getParameter("Login"));
+            u.setSenha(request.getParameter("Senha"));
+            u.setX("A");
+
+            DAOUsuario a = new DAOUsuario();
+            a.atualizar(u);
+            response.sendRedirect("/EcommerceHorizon/DAOUsuario/ListarUsuarios.jsp");
+
+        }
+
+    }
+
+    private void encaminharPagina(String pagina, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            RequestDispatcher rd = request.getRequestDispatcher(pagina);
+            rd.forward(request, response);
+        } catch (Exception e) {
+            System.out.println("Erro ao encaminhar: " + e);
+        }
     }
 
     /**
