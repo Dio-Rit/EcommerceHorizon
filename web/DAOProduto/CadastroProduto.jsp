@@ -1,11 +1,15 @@
-
+<%-- 
+    Document   : CadastroProduto
+    Created on : 11 de abr de 2021, 14:03:39
+    Author     : yNot
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Horizon - Cadastro Usuário</title>
+        <title>Horizon - Cadastro Produto</title>
 
         <style>
             .bd-placeholder-img {
@@ -42,7 +46,7 @@
                         <ul class="navbar-nav mr-auto">
                         </ul>
 
-                        <form action="../DAOUsuario/ListarUsuarios.jsp">
+                        <form action="../DAOProduto/ListarProduto.jsp">
                             <button type="submit" class="btn btn-dark">Voltar</input>
                         </form>
 
@@ -51,23 +55,29 @@
             </div>
         </nav>
 
-        <div id="CadastroUsuario">
-            <form name="AcaoUsuario" id="AcaoUsuario" method="post" action="../AcaoUsuario?param=SalvarUsuario">
+        <div id="CadastroProduto">
+            <form name="AcaoProduto" id="AcaoProduto" method="post" action="../AcaoProduto?param=SalvarProduto">
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>
-                        <input type="text" class="form-control" id="Nome" name="Nome" aria-describedby="Nome" placeholder="Digite seu nome" required="">
+                        <input type="text" class="form-control" id="nome" name="nome" aria-describedby="nome" placeholder="Digite seu nome" required="">
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="Login">Login</label>
-                        <input type="text" class="form-control" id="Login" name="Login" aria-describedby="Login" placeholder="Digite seu login" required="">
+                        <label for="Quantidade">Quantidade</label>
+                        <input type="text" class="form-control" id="quantidade" name="quantidade" aria-describedby="quantidade" placeholder="Digite a quantidade" required="">
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="Senha">Senha</label>
-                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha" required="">
+                        <label for="preco">Preço</label>
+                        <input type="text" class="form-control" id="preco" name="preco" aria-describedby="preco" placeholder="Digite o preço" required="">
                     </div>
+                    
+                    <div class="form-group col-md-3">
+                        <label for="Descricao">Descrição</label>
+                        <input type="text" class="form-control" id="descricao" name="descricao" aria-describedby="descricao" placeholder="Digite uma descricao" required="">
+                    </div>
+                    
                     <br>
                     <button type="submit" class="btn btn-dark">Cadastrar</button>
                 </center>

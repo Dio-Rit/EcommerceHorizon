@@ -7,9 +7,11 @@ package DAO;
 
 import Apoio.ConexaoBD;
 import Apoio.IDAO_T;
+import Entidade.Cliente;
 import Entidade.Produto;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 /**
@@ -124,6 +126,38 @@ public class DAOProduto implements IDAO_T<Produto> {
         }
 
         return p;
+    }
+    
+    public ArrayList<Produto> consultarTodos() {
+
+        ArrayList<Produto> produto = new ArrayList();
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "select * "
+                    + "from "
+                    + "produto "
+                    + "order by nome";
+            ResultSet resultado = st.executeQuery(sql);
+
+            while (resultado.next()) {
+                Produto c = new Produto();
+                c.setId(resultado.getInt("id"));
+                c.setNome(resultado.getString("nome")); 
+                c.setQuantidade(resultado.getInt("quantidade"));
+                c.setPreco(resultado.getDouble("preco"));
+                c.setDescricao(resultado.getString("descricao"));
+                c.setX(resultado.getString("x"));
+
+                produto.add(c);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar Produto: " + e);
+        }
+
+        return produto;
     }
 
 

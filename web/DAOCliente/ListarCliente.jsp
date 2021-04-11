@@ -1,14 +1,18 @@
+<%-- 
+    Document   : ListarCliente
+    Created on : 11 de abr de 2021, 14:05:25
+    Author     : yNot
+--%>
 
-
-<%@page import="DAO.DAOUsuario"%>
+<%@page import="DAO.DAOCliente"%>
+<%@page import="Entidade.Cliente"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Entidade.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Horizon - Listar de Usuários</title>
+        <title>Horizon - Listar Clientes</title>
 
         <style>
             .bd-placeholder-img {
@@ -62,9 +66,9 @@
                         <section layout:fragment="content">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-sm-10">Lista de Usuários</div>
+                                    <div class="col-sm-10">Lista de Clientes</div>
                                     <div class="col-sm-1">
-                                        <a href="../DAOUsuario/CadastroUsuario.jsp" class="btn btn-dark active" role="button"
+                                        <a href="../DAOCliente/CadastroCliente.jsp" class="btn btn-dark active" role="button"
                                            aria-pressed="true"><i class="fas fa-plus"></i>Adicionar</a>
                                     </div>
                                 </div>
@@ -73,7 +77,7 @@
                                 </div>
 
                                 <%
-                                    ArrayList<Usuario> usuario = new DAOUsuario().consultarTodos();
+                                    ArrayList<Cliente> cliente = new DAOCliente().consultarTodos();
                                 %>
 
                                 <div class="row">
@@ -82,25 +86,31 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Nome</th>
-                                                <th scope="col">Login</th>
+                                                <th scope="col">CPF</th>
+                                                <th scope="col">Data Nascimento</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Descrição</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <%
-                                                for (int i = 0; i < usuario.size(); i++) {
-                                                    Usuario categ = usuario.get(i);
+                                                for (int i = 0; i < cliente.size(); i++) {
+                                                    Cliente categ = cliente.get(i);
                                                     if (categ.getX().equals("A")) {
                                             %>
                                             <tr>
                                                 <td><%= categ.getId()%></td>
                                                 <td><%= categ.getNome() %></td>
-                                                <td><%= categ.getLogin()%></td>
+                                                <td><%= categ.getCpf()%></td>
+                                                <td><%= categ.getDataNsci()%></td>
+                                                <td><%= categ.getEmail()%></td>
+                                                <td><%= categ.getDecricao()%></td>
                                                 <td>
-                                                    <a href="../AcaoUsuario?param=EdUsuario&id=<%= categ.getId()%>" class="btn btn-success" title="Editar" >
+                                                    <a href="../AcaoCliente?param=EdCliente&id=<%= categ.getId()%>" class="btn btn-success" title="Editar" >
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <a href="../AcaoUsuario?param=ExcluirUsuario&id=<%= categ.getId()%>" class="btn btn-danger" title="Excluir">
+                                                    <a href="../AcaoCliente?param=ExcluirCliente&id=<%= categ.getId()%>" class="btn btn-danger" title="Excluir">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>

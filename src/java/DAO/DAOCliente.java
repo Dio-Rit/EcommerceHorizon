@@ -10,6 +10,7 @@ import Apoio.IDAO_T;
 import Entidade.Cliente;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -154,6 +155,39 @@ public class DAOCliente implements IDAO_T<Cliente> {
             System.out.println("Erro ao procurar cpf = " + e);
         }
         return true;
+    }
+    
+        public ArrayList<Cliente> consultarTodos() {
+
+        ArrayList<Cliente> cliente = new ArrayList();
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "select * "
+                    + "from "
+                    + "cliente "
+                    + "order by nome";
+            ResultSet resultado = st.executeQuery(sql);
+
+            while (resultado.next()) {
+                Cliente c = new Cliente();
+                c.setId(resultado.getInt("id"));
+                c.setNome(resultado.getString("nome")); 
+                c.setCpf(resultado.getString("cpf"));
+                c.setDataNsci(resultado.getString("data_nsci"));
+                c.setEmail(resultado.getString("email"));
+                c.setDecricao(resultado.getString("descricao"));
+                c.setX(resultado.getString("x"));
+
+                cliente.add(c);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar Cliente: " + e);
+        }
+
+        return cliente;
     }
 
 }

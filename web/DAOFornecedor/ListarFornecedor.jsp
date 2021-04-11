@@ -1,14 +1,18 @@
+<%-- 
+    Document   : ListarFornecedor
+    Created on : 11 de abr de 2021, 14:04:46
+    Author     : yNot
+--%>
 
-
-<%@page import="DAO.DAOUsuario"%>
+<%@page import="Entidade.Fornecedor"%>
+<%@page import="DAO.DAOFornecedor"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Entidade.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Horizon - Listar de Usuários</title>
+        <title>Horizon - Listar Fornecedor</title>
 
         <style>
             .bd-placeholder-img {
@@ -36,6 +40,7 @@
         <link href="../css/navbar.css" rel="stylesheet">
     </head>
     <body>
+    <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Horizon</a>
@@ -62,9 +67,9 @@
                         <section layout:fragment="content">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-sm-10">Lista de Usuários</div>
+                                    <div class="col-sm-10">Lista de Fornecedores</div>
                                     <div class="col-sm-1">
-                                        <a href="../DAOUsuario/CadastroUsuario.jsp" class="btn btn-dark active" role="button"
+                                        <a href="../DAOFornecedor/CadastroFornecedor.jsp" class="btn btn-dark active" role="button"
                                            aria-pressed="true"><i class="fas fa-plus"></i>Adicionar</a>
                                     </div>
                                 </div>
@@ -73,7 +78,7 @@
                                 </div>
 
                                 <%
-                                    ArrayList<Usuario> usuario = new DAOUsuario().consultarTodos();
+                                    ArrayList<Fornecedor> fornecedor = new DAOFornecedor().consultarTodos();
                                 %>
 
                                 <div class="row">
@@ -88,19 +93,21 @@
                                         </thead>
                                         <tbody>
                                             <%
-                                                for (int i = 0; i < usuario.size(); i++) {
-                                                    Usuario categ = usuario.get(i);
+                                                for (int i = 0; i < fornecedor.size(); i++) {
+                                                    Fornecedor categ = fornecedor.get(i);
                                                     if (categ.getX().equals("A")) {
                                             %>
                                             <tr>
                                                 <td><%= categ.getId()%></td>
-                                                <td><%= categ.getNome() %></td>
-                                                <td><%= categ.getLogin()%></td>
+                                                <td><%= categ.getNome()%></td>
+                                                <td><%= categ.getCnpj()%></td>
+                                                <td><%= categ.getTelefone()%></td>
+                                                <td><%= categ.getEmail()%></td>
                                                 <td>
-                                                    <a href="../AcaoUsuario?param=EdUsuario&id=<%= categ.getId()%>" class="btn btn-success" title="Editar" >
+                                                    <a href="../AcaoFornecedor?param=EdFornecedor&id=<%= categ.getId()%>" class="btn btn-success" title="Editar" >
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <a href="../AcaoUsuario?param=ExcluirUsuario&id=<%= categ.getId()%>" class="btn btn-danger" title="Excluir">
+                                                    <a href="../AcaoFornecedor?param=ExcluirFornecedor&id=<%= categ.getId()%>" class="btn btn-danger" title="Excluir">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>

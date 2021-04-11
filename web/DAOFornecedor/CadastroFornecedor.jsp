@@ -1,12 +1,16 @@
-
+1<%-- 
+    Document   : CadastroFornecedor
+    Created on : 11 de abr de 2021, 14:04:19
+    Author     : yNot
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Horizon - Cadastro Usuário</title>
-
+        <title>Horizon - Cadastro Fornecedor</title>
+        
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -42,7 +46,7 @@
                         <ul class="navbar-nav mr-auto">
                         </ul>
 
-                        <form action="../DAOUsuario/ListarUsuarios.jsp">
+                        <form action="../DAOFornecedor/ListarFornecedor.jsp">
                             <button type="submit" class="btn btn-dark">Voltar</input>
                         </form>
 
@@ -51,23 +55,29 @@
             </div>
         </nav>
 
-        <div id="CadastroUsuario">
-            <form name="AcaoUsuario" id="AcaoUsuario" method="post" action="../AcaoUsuario?param=SalvarUsuario">
+        <div id="CadastroFornecedor">
+            <form name="AcaoFornecedor" id="AcaoFornecedor" method="post" action="../AcaoFornecedor?param=SalvarFornecedor">
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>
-                        <input type="text" class="form-control" id="Nome" name="Nome" aria-describedby="Nome" placeholder="Digite seu nome" required="">
+                        <input type="text" class="form-control" id="nome" name="nome" aria-describedby="Nome" placeholder="Digite seu nome" required="">
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="Login">Login</label>
-                        <input type="text" class="form-control" id="Login" name="Login" aria-describedby="Login" placeholder="Digite seu login" required="">
+                        <label for="CNPJ">CNPJ</label>
+                        <input type="text" class="form-control" id="cnpj" name="cnpj" aria-describedby="cnpj" placeholder="Digite seu CNPJ" required="">
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="Senha">Senha</label>
-                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha" required="">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone" aria-describedby="telefone" placeholder="Digite o telefone" required="">
                     </div>
+                    
+                    <div class="form-group col-md-3">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Digite seu email" required="">
+                    </div>
+                    
                     <br>
                     <button type="submit" class="btn btn-dark">Cadastrar</button>
                 </center>

@@ -10,6 +10,7 @@ import Apoio.IDAO_T;
 import Entidade.Fornecedor;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 /**
@@ -152,5 +153,37 @@ public class DAOFornecedor implements IDAO_T<Fornecedor> {
             System.out.println("Erro ao procurar cnpj = " + e);
         }
         return true;
+    }
+    
+    public ArrayList<Fornecedor> consultarTodos() {
+
+        ArrayList<Fornecedor> fornecedor = new ArrayList();
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "select * "
+                    + "from "
+                    + "fornecedor "
+                    + "order by nome";
+            ResultSet resultado = st.executeQuery(sql);
+
+            while (resultado.next()) {
+                Fornecedor c = new Fornecedor();
+                c.setId(resultado.getInt("id"));
+                c.setNome(resultado.getString("nome")); 
+                c.setCnpj(resultado.getString("cnpj"));
+                c.setTelefone(resultado.getString("telefone"));
+                c.setEmail(resultado.getString("email"));
+                c.setX(resultado.getString("x"));
+
+                fornecedor.add(c);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar Fornecedor: " + e);
+        }
+
+        return fornecedor;
     }
 }

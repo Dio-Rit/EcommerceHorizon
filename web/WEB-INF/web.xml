@@ -12,6 +12,18 @@
         <servlet-name>Acaologin</servlet-name>
         <servlet-class>Servlet.Acaologin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AcaoCliente</servlet-name>
+        <servlet-class>Servlet.AcaoCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AcaoFornecedor</servlet-name>
+        <servlet-class>Servlet.AcaoFornecedor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AcaoProduto</servlet-name>
+        <servlet-class>Servlet.AcaoProduto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AcaoUsuario</servlet-name>
         <url-pattern>/AcaoUsuario</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>Acaologin</servlet-name>
         <url-pattern>/Acaologin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcaoCliente</servlet-name>
+        <url-pattern>/AcaoCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcaoFornecedor</servlet-name>
+        <url-pattern>/AcaoFornecedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcaoProduto</servlet-name>
+        <url-pattern>/AcaoProduto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

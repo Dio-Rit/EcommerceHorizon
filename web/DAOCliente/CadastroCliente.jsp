@@ -1,11 +1,15 @@
-
+<%-- 
+    Document   : CadastroCliente
+    Created on : 11 de abr de 2021, 14:05:13
+    Author     : yNot
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Horizon - Cadastro Usuário</title>
+        <title>Horizon - Cadastro Cliente</title>
 
         <style>
             .bd-placeholder-img {
@@ -42,7 +46,7 @@
                         <ul class="navbar-nav mr-auto">
                         </ul>
 
-                        <form action="../DAOUsuario/ListarUsuarios.jsp">
+                        <form action="../DAOCliente/ListarCliente.jsp">
                             <button type="submit" class="btn btn-dark">Voltar</input>
                         </form>
 
@@ -51,23 +55,34 @@
             </div>
         </nav>
 
-        <div id="CadastroUsuario">
-            <form name="AcaoUsuario" id="AcaoUsuario" method="post" action="../AcaoUsuario?param=SalvarUsuario">
+        <div id="CadastroCliente">
+            <form name="AcaoCliente" id="AcaoCliente" method="post" action="../AcaoCliente?param=SalvarCliente">
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>
-                        <input type="text" class="form-control" id="Nome" name="Nome" aria-describedby="Nome" placeholder="Digite seu nome" required="">
+                        <input type="text" class="form-control" id="nome" name="nome" aria-describedby="Nome" placeholder="Digite seu nome" required="">
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="Login">Login</label>
-                        <input type="text" class="form-control" id="Login" name="Login" aria-describedby="Login" placeholder="Digite seu login" required="">
+                        <label for="CPF">CPF</label>
+                        <input type="text" class="form-control" id="cpf" name="cpf" aria-describedby="cpf" placeholder="Digite seu CPF" required="">
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="Senha">Senha</label>
-                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha" required="">
+                        <label for="Data_nsci">Data Nascimento</label>
+                        <input type="text" class="form-control" id="data_nsci" name="data_nsci" placeholder="Digite sua data de nascimento" required="">
                     </div>
+                    
+                    <div class="form-group col-md-3">
+                        <label for="Email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Digite seu email" required="">
+                    </div>
+                    
+                    <div class="form-group col-md-3">
+                        <label for="Descricao">Descrição</label>
+                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite uma descrição" required="">
+                    </div>
+                    
                     <br>
                     <button type="submit" class="btn btn-dark">Cadastrar</button>
                 </center>

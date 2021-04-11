@@ -44,9 +44,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Cadastrar</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="">Cliente</a></li>
-                                <li><a class="dropdown-item" href="">Fornecedor</a></li>
-                                <li><a class="dropdown-item" href="">Produto</a></li>
+                                <li><a class="dropdown-item" href="DAOCliente/ListarCliente.jsp">Cliente</a></li>
+                                <li><a class="dropdown-item" href="DAOFornecedor/ListarFornecedor.jsp">Fornecedor</a></li>
+                                <li><a class="dropdown-item" href="DAOProduto/ListarProduto.jsp">Produto</a></li>
                                 <li><a class="dropdown-item" href="DAOUsuario/ListarUsuarios.jsp">Usuário</a></li>
                             </ul>
                         </li>
