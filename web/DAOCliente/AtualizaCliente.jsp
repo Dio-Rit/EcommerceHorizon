@@ -33,6 +33,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <link href="css/navbar.css" rel="stylesheet">
+        
+        <script language="JavaScript" src="js/ValidaCliente.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -58,7 +60,7 @@
 
         <div id="EditarCliente">
 
-            <form name="AcaoCliente" id="AcaoCliente" method="post" action="AcaoCliente?param=EditarCliente">
+            <form name="AcaoCliente" id="AcaoCliente" method="post" action="AcaoCliente?param=EditarCliente" onSubmit="return validardadosCliente();">
 
                 <% Cliente usu = (Cliente) request.getAttribute("objCliente");%>
 

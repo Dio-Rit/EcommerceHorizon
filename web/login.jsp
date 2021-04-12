@@ -68,6 +68,20 @@
                 <label for="senha" class="visually-hidden">Password</label>
                 <input type="password" id="inputPassword" name="senha" class="form-control" placeholder="Senha" required="">
                 
+                <%
+                    String msg = String.valueOf(request.getAttribute("msgLogin"));
+
+                    if (msg.equals("erro")) {
+                %>
+                <p id="msgErroLogin">Usuário ou senha não conferem!</p>
+                <%
+                } else {
+                %>
+                <p id="msgErroLogin"></p>
+                <%
+                    }
+                %>
+                
                 <br>
                 <button class="w-100 btn btn-lg btn-dark" type="submit">Acessar</button>
                 

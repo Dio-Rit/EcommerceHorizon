@@ -5,11 +5,17 @@
  */
 package Servlet;
 
-import DAO.DAOUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +23,12 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author yNot
+ * @author pretto
  */
-public class Acaologin extends HttpServlet {
+@WebFilter("/*")
+public class filtro extends HttpServlet implements Filter {
+
+    List<String> urls = new ArrayList<>();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +47,10 @@ public class Acaologin extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Acaologin</title>");
+            out.println("<title>Servlet filtro</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Acaologin at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet filtro at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,15 +68,7 @@ public class Acaologin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
-
-        String param = request.getParameter("param");
-
-        if (param.equals("logout")) {
-            HttpSession sessao = request.getSession();
-            sessao.invalidate();
-            response.sendRedirect("login.jsp");
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -81,40 +82,7 @@ public class Acaologin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
-
-        String param = request.getParameter("param");
-
-        String Login = request.getParameter("nome");
-        String Senha = request.getParameter("senha");
-
-        if (param.equals("Logar")) {
-
-            DAOUsuario du = new DAOUsuario();
-
-            if (du.logar(Login, Senha)) {
-
-                HttpSession sessao = ((HttpServletRequest) request).getSession();
-
-                sessao.setAttribute("usuarioLogado", Login);
-
-                encaminharPagina("home.jsp", request, response);
-
-            } else {
-
-                request.setAttribute("msgLogin", "erro");
-                encaminharPagina("login.jsp", request, response);
-            }
-        }
-    }
-
-    private void encaminharPagina(String pagina, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            RequestDispatcher rd = request.getRequestDispatcher(pagina);
-            rd.forward(request, response);
-        } catch (Exception e) {
-            System.out.println("Erro ao encaminhar: " + e);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -127,4 +95,41 @@ public class Acaologin extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        urls.add("/EcommerceHorizon/");
+        urls.add("/EcommerceHorizon/Acaologin");
+        urls.add("/EcommerceHorizon/index.jsp");
+        urls.add("/EcommerceHorizon/login.jsp");
+        urls.add("/EcommerceHorizon/css/bootstrap.min.css");
+        urls.add("/EcommerceHorizon/css/BgHome.css");
+        urls.add("/EcommerceHorizon/css/signin.css");
+        urls.add("/EcommerceHorizon/css/navbar.css");
+        urls.add("/EcommerceHorizon/js/bootstrap.bundle.min.js");
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+
+        System.out.println("getReqURI: " + req.getRequestURI());
+
+        if (urls.contains(req.getRequestURI())) {
+            request.setAttribute("parametro", "login");
+            chain.doFilter(request, response);
+        } else {
+            HttpSession sessao = ((HttpServletRequest) request).getSession();
+
+            // caso não pertença a lista, verifica se há usuário na sessão
+            // se não houver, encaminha para o Login
+            if (sessao.getAttribute("usuarioLogado") == null) {
+                ((HttpServletResponse) response).sendRedirect("/EcommerceHorizon/login.jsp");
+            } else {
+                // se usuário estiver logado, apenas abra a página solicitada
+                System.out.println("Destino: " + req.getRequestURI());
+                chain.doFilter(request, response);
+            }
+        }
+
+    }
 }

@@ -32,6 +32,8 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
 
         <link href="../css/navbar.css" rel="stylesheet">
+        
+        <script language="JavaScript" src="../js/ValidaCliente.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -56,7 +58,7 @@
         </nav>
 
         <div id="CadastroCliente">
-            <form name="AcaoCliente" id="AcaoCliente" method="post" action="../AcaoCliente?param=SalvarCliente">
+            <form name="AcaoCliente" id="AcaoCliente" method="post" action="../AcaoCliente?param=SalvarCliente" onSubmit="return validardadosCliente();">
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>

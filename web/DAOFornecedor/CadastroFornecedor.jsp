@@ -32,6 +32,8 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
 
         <link href="../css/navbar.css" rel="stylesheet">
+        
+        <script language="JavaScript" src="../js/ValidaFornecedor.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -56,7 +58,7 @@
         </nav>
 
         <div id="CadastroFornecedor">
-            <form name="AcaoFornecedor" id="AcaoFornecedor" method="post" action="../AcaoFornecedor?param=SalvarFornecedor">
+            <form name="AcaoFornecedor" id="AcaoFornecedor" method="post" action="../AcaoFornecedor?param=SalvarFornecedor" onSubmit="return validardadosFornecedor();">
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>

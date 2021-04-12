@@ -33,6 +33,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <link href="css/navbar.css" rel="stylesheet">
+        
+        <script language="JavaScript" src="js/ValidaProduto.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -58,7 +60,7 @@
 
         <div id="EditarProduto">
 
-            <form name="AcaoProduto" id="AcaoProduto" method="post" action="AcaoProduto?param=EditarProduto">
+            <form name="AcaoProduto" id="AcaoProduto" method="post" action="AcaoProduto?param=EditarProduto" onSubmit="return validardadosProduto();">
 
                 <% Produto usu = (Produto) request.getAttribute("objProduto");%>
 

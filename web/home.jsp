@@ -27,9 +27,9 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <link href="css/navbar.css" rel="stylesheet">
-        
+
         <link href="css/BgHome.css" rel="stylesheet">
-        
+
     </head>
     <body class="bg">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -74,18 +74,15 @@
                         </li>
                     </ul>
                     <div class="float-end" id="navbarsExampleDefault">
-                        <ul class="navbar-nav mr-auto">
-                        </ul>
-
-                        <form action="login.jsp">
-                            <button type="submit" class="btn btn-dark">Sair</input>
-                        </form>
-
+                        <form action="Acaologin?param=Logout">
+                            <a class="btn btn-dark" href="Acaologin?param=logout">Sair</a>
+                        </form> 
                     </div>
+
                 </div>
             </div>
         </nav>
-        
+
         <script src="js/bootstrap.bundle.min.js"></script>
 
     </body>

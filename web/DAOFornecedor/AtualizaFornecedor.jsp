@@ -33,6 +33,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <link href="css/navbar.css" rel="stylesheet">
+        
+        <script language="JavaScript" src="js/ValidaFornecedor.js"></script>
     </head>
     <body>
          <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -58,7 +60,7 @@
 
         <div id="EditarFornecedor">
 
-            <form name="AcaoFornecedor" id="AcaoFornecedor" method="post" action="AcaoFornecedor?param=EditarFornecedor">
+            <form name="AcaoFornecedor" id="AcaoFornecedor" method="post" action="AcaoFornecedor?param=EditarFornecedor" onSubmit="return validardadosFornecedor();">
 
                 <% Fornecedor usu = (Fornecedor) request.getAttribute("objFornecedor");%>
 

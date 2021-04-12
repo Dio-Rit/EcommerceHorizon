@@ -39,15 +39,12 @@ public class DAOUsuario implements IDAO_T<Usuario> {
                     + "WHERE login = '" + login + "' "
                     + "AND senha = '" + senha + "' "
                     + "AND x = 'A';";
-            System.out.println("Sql = " + sql);
 
             resultadoQ = st.executeQuery(sql);
 
             if (resultadoQ.next()) {
                 String newLogin = resultadoQ.getString("login");
-                System.out.println(newLogin);
                 String newSenha = resultadoQ.getString("senha");
-                System.out.println(newSenha);
 
                 if (login.equals(newLogin) && senha.equals(newSenha)) {
                     return true;

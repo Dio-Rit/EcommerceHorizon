@@ -32,6 +32,8 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
 
         <link href="../css/navbar.css" rel="stylesheet">
+        
+        <script language="JavaScript" src="../js/ValidaProduto.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -56,7 +58,7 @@
         </nav>
 
         <div id="CadastroProduto">
-            <form name="AcaoProduto" id="AcaoProduto" method="post" action="../AcaoProduto?param=SalvarProduto">
+            <form name="AcaoProduto" id="AcaoProduto" method="post" action="../AcaoProduto?param=SalvarProduto" onSubmit="return validardadosProduto();">
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>

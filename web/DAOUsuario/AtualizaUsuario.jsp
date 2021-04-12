@@ -29,6 +29,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <link href="css/navbar.css" rel="stylesheet">
+        
+        <script language="JavaScript" src="js/ValidaUsuario.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -54,7 +56,7 @@
 
         <div id="EditarUsuario">
 
-            <form name="AcaoUsuario" id="AcaoUsuario" method="post" action="AcaoUsuario?param=EditarUsuario">
+            <form name="AcaoUsuario" id="AcaoUsuario" method="post" action="AcaoUsuario?param=EditarUsuario" onSubmit="return validardados();">
 
                 <% Usuario usu = (Usuario) request.getAttribute("objUsuario");%>
 
@@ -64,17 +66,17 @@
 
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>
-                        <input type="text" class="form-control" id="Nome" name="Nome" aria-describedby="Nome" required="" value="<%= usu.getNome()%>">
+                        <input type="text" class="form-control" id="Nome" name="Nome" aria-describedby="Nome" placeholder="Digite seu nome" required="" value="<%= usu.getNome()%>">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="Login">Login</label>
-                        <input type="text" class="form-control" id="Login" name="Login" aria-describedby="Login" required="" value="<%= usu.getLogin()%>">
+                        <input type="text" class="form-control" id="Login" name="Login" aria-describedby="Login" placeholder="Digite seu login (mínimo 3 caracteres)" required="" value="<%= usu.getLogin()%>">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="Senha">Senha</label>
-                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha" required="">
+                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha (mínimo 8 caracteres)" required="">
                     </div>
 
                     <br>

@@ -28,6 +28,8 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
 
         <link href="../css/navbar.css" rel="stylesheet">
+        
+        <script language="JavaScript" src="../js/ValidaUsuario.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
@@ -52,7 +54,7 @@
         </nav>
 
         <div id="CadastroUsuario">
-            <form name="AcaoUsuario" id="AcaoUsuario" method="post" action="../AcaoUsuario?param=SalvarUsuario">
+            <form name="AcaoUsuario" id="AcaoUsuario" method="post" action="../AcaoUsuario?param=SalvarUsuario" onSubmit="return validardados();">
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>
@@ -61,12 +63,12 @@
 
                     <div class="form-group col-md-3">
                         <label for="Login">Login</label>
-                        <input type="text" class="form-control" id="Login" name="Login" aria-describedby="Login" placeholder="Digite seu login" required="">
+                        <input type="text" class="form-control" id="Login" name="Login" aria-describedby="Login" placeholder="Digite seu login (mínimo 3 caracteres)" required="">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="Senha">Senha</label>
-                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha" required="">
+                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha (mínimo 8 caracteres)" required="">
                     </div>
                     <br>
                     <button type="submit" class="btn btn-dark">Cadastrar</button>
