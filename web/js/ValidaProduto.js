@@ -8,8 +8,8 @@ function validardadosProduto() {
     var erro = 0;
 
     nome = document.AcaoProduto.nome.value;
-    quantidade = document.AcaoProduto.quantidade.value;
-    preco = document.AcaoProduto.preco.value;
+    quantidade = parseInt(document.AcaoProduto.quantidade.value,10);
+    preco = parseFloat(document.AcaoProduto.preco.value);
     descricao = document.AcaoProduto.descricao.value;
 
 
@@ -22,7 +22,7 @@ function validardadosProduto() {
         document.AcaoProduto.nome.style.backgroundColor = "white";
     }
 
-    if (quantidade.length < 1)
+    if (quantidade <= 0)
     {
         document.AcaoProduto.quantidade.style.backgroundColor = "#94949e";
         erro++;
@@ -30,7 +30,7 @@ function validardadosProduto() {
         document.AcaoProduto.quantidade.style.backgroundColor = "white";
     }
 
-    if (preco.length < 1)
+    if (preco <= 0)
     {
         document.AcaoProduto.preco.style.backgroundColor = "#94949e";
         erro++;

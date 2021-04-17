@@ -98,6 +98,7 @@ public class filtro extends HttpServlet implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         urls.add("/EcommerceHorizon/");
+        urls.add("/EcommerceHorizon/img/Logo2.jpg");
         urls.add("/EcommerceHorizon/Acaologin");
         urls.add("/EcommerceHorizon/index.jsp");
         urls.add("/EcommerceHorizon/login.jsp");

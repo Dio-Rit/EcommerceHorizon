@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Horizon - Cadastro Fornecedor</title>
-        
+
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -32,7 +32,7 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
 
         <link href="../css/navbar.css" rel="stylesheet">
-        
+
         <script language="JavaScript" src="../js/ValidaFornecedor.js"></script>
     </head>
     <body>
@@ -67,28 +67,28 @@
 
                     <div class="form-group col-md-3">
                         <label for="CNPJ">CNPJ</label>
-                        <input type="text" class="form-control" id="cnpj" name="cnpj" aria-describedby="cnpj" placeholder="Digite seu CNPJ" required="">
+                        <input type="text" class="form-control" id="cnpj" name="cnpj" aria-describedby="cnpj" placeholder="00.000.000/0000-00" required="" data-mask="00.000.000/0000-00">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="telefone">Telefone</label>
-                        <input type="text" class="form-control" id="telefone" name="telefone" aria-describedby="telefone" placeholder="Digite o telefone" required="">
+                        <input type="text" class="form-control" id="telefone" name="telefone" aria-describedby="telefone" placeholder="(00)00000-0000" required="" data-mask="(00)00000-0000">
                     </div>
-                    
+
                     <div class="form-group col-md-3">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Digite seu email" required="">
                     </div>
-                    
+
                     <br>
                     <button type="submit" class="btn btn-dark">Cadastrar</button>
                 </center>
             </form>
         </div>
 
-
-
         <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     </body>
 </html>

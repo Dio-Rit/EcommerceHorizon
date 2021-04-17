@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Horizon - Editar Cliente</title>
-        
+
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -33,7 +33,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <link href="css/navbar.css" rel="stylesheet">
-        
+
         <script language="JavaScript" src="js/ValidaCliente.js"></script>
     </head>
     <body>
@@ -75,19 +75,19 @@
 
                     <div class="form-group col-md-3">
                         <label for="CPF">CPF</label>
-                        <input type="text" class="form-control" id="cpf" name="cpf" aria-describedby="cpf" placeholder="Digite seu CPF" required="" value="<%= usu.getCpf()%>">
+                        <input type="text" class="form-control" id="cpf" name="cpf" aria-describedby="cpf" placeholder="000.000.000-00" required="" value="<%= usu.getCpf()%>" data-mask="000.000.000-00">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="Data_nsci">Data Nascimento</label>
-                        <input type="text" class="form-control" id="data_nsci" name="data_nsci" placeholder="Digite sua data de nascimento" required="" value="<%= usu.getDataNsci()%>">
+                        <input type="text" class="form-control" id="data_nsci" name="data_nsci" placeholder="00/00/0000" required="" value="<%= usu.getDataNsci()%>" data-mask="00/00/0000">
                     </div>
-                    
+
                     <div class="form-group col-md-3">
                         <label for="Email">Email</label>
                         <input type="text" class="form-control" id="email" name="email" placeholder="Digite seu email" required="" value="<%= usu.getEmail()%>">
                     </div>
-                    
+
                     <div class="form-group col-md-3">
                         <label for="Descricao">Descrição</label>
                         <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite uma descrição" required="" value="<%= usu.getDecricao()%>">
@@ -101,6 +101,8 @@
         </div>
 
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     </body>
 </html>

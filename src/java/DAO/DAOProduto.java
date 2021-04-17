@@ -161,24 +161,24 @@ public class DAOProduto implements IDAO_T<Produto> {
     }
 
 
-    public boolean Validacontem(int q, int id) {
+    public boolean Validacontem(String nome) {
         try {
 
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "SELECT * "
                     + "FROM produto "
-                    + "WHERE id = '" + id + "' "
+                    + "WHERE nome = '" + nome + "' "
                     + "AND x = 'A';";
             System.out.println("Sql = " + sql);
 
             resultadoQ = st.executeQuery(sql);
 
             if (resultadoQ.next()) {
-                int newQuantidade = resultadoQ.getInt("quantidade");
-                System.out.println(newQuantidade);
+                String newNome = resultadoQ.getString("nome");
+                System.out.println(newNome);
 
-                if (q > newQuantidade) {
+                if (nome.equals(newNome)) {
                     return false;
                 }
             }

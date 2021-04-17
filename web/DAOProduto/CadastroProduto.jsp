@@ -67,12 +67,12 @@
 
                     <div class="form-group col-md-3">
                         <label for="Quantidade">Quantidade</label>
-                        <input type="text" class="form-control" id="quantidade" name="quantidade" aria-describedby="quantidade" placeholder="Digite a quantidade" required="">
+                        <input type="text" class="form-control" id="quantidade" name="quantidade" aria-describedby="quantidade" placeholder="Digite a quantidade" required="" data-mask="00000000000000000000">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="preco">Preço</label>
-                        <input type="text" class="form-control" id="preco" name="preco" aria-describedby="preco" placeholder="Digite o preço" required="">
+                        <input type="text" class="form-control" id="preco" name="preco" aria-describedby="preco" placeholder="0000.00" required="" data-mask="##.00">
                     </div>
                     
                     <div class="form-group col-md-3">
@@ -89,6 +89,8 @@
 
 
         <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     </body>
 </html>

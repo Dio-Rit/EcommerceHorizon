@@ -75,12 +75,12 @@
 
                     <div class="form-group col-md-3">
                         <label for="CNPJ">CNPJ</label>
-                        <input type="text" class="form-control" id="cnpj" name="cnpj" aria-describedby="cnpj" placeholder="Digite seu CNPJ" required="" value="<%= usu.getCnpj()%>">
+                        <input type="text" class="form-control" id="cnpj" name="cnpj" aria-describedby="cnpj" placeholder="00.000.000/0000-00" required="" value="<%= usu.getCnpj()%>" data-mask="00.000.000/0000-00">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="telefone">Telefone</label>
-                        <input type="text" class="form-control" id="telefone" name="telefone" aria-describedby="telefone" placeholder="Digite o telefone" required="" value="<%= usu.getTelefone()%>">
+                        <input type="text" class="form-control" id="telefone" name="telefone" aria-describedby="telefone" placeholder="(00)00000-0000" required="" value="<%= usu.getTelefone()%>" data-mask="(00)00000-0000">
                     </div>
                     
                     <div class="form-group col-md-3">
@@ -96,6 +96,8 @@
         </div>
 
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     </body>
 </html>
