@@ -9,9 +9,15 @@ import Apoio.ConexaoBD;
 import Apoio.IDAO_T;
 import Entidade.Cliente;
 import Entidade.Produto;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 
 /**
@@ -206,6 +212,23 @@ public class DAOProduto implements IDAO_T<Produto> {
             System.out.println("Erro ao atualizar quantidade produto = " + e);
         }
 
+    }
+    
+        public byte[] gerarRelatorio() {
+        try {
+            Connection conn = ConexaoBD.getInstance().getConnection();
+
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/Relatorios/Listagem_produto.jrxml"));
+
+            Map parameters = new HashMap();
+
+            byte[] bytes = JasperRunManager.runReportToPdf(relatorio, parameters, conn);
+
+            return bytes;
+        } catch (Exception e) {
+            System.out.println("erro ao gerar relatorio: " + e);
+        }
+        return null;
     }
     
 }

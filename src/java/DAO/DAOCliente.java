@@ -8,9 +8,15 @@ package DAO;
 import Apoio.ConexaoBD;
 import Apoio.IDAO_T;
 import Entidade.Cliente;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 /**
  *
@@ -156,8 +162,8 @@ public class DAOCliente implements IDAO_T<Cliente> {
         }
         return true;
     }
-    
-        public ArrayList<Cliente> consultarTodos() {
+
+    public ArrayList<Cliente> consultarTodos() {
 
         ArrayList<Cliente> cliente = new ArrayList();
 
@@ -173,7 +179,7 @@ public class DAOCliente implements IDAO_T<Cliente> {
             while (resultado.next()) {
                 Cliente c = new Cliente();
                 c.setId(resultado.getInt("id"));
-                c.setNome(resultado.getString("nome")); 
+                c.setNome(resultado.getString("nome"));
                 c.setCpf(resultado.getString("cpf"));
                 c.setDataNsci(resultado.getString("data_nsci"));
                 c.setEmail(resultado.getString("email"));
@@ -188,6 +194,23 @@ public class DAOCliente implements IDAO_T<Cliente> {
         }
 
         return cliente;
+    }
+
+    public byte[] gerarRelatorio() {
+        try {
+            Connection conn = ConexaoBD.getInstance().getConnection();
+
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/Relatorios/Listagem_clientes.jrxml"));
+
+            Map parameters = new HashMap();
+
+            byte[] bytes = JasperRunManager.runReportToPdf(relatorio, parameters, conn);
+
+            return bytes;
+        } catch (Exception e) {
+            System.out.println("erro ao gerar relatorio: " + e);
+        }
+        return null;
     }
 
 }
