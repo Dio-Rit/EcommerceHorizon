@@ -5,21 +5,18 @@
  */
 package Servlet;
 
-import DAO.DAOUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author yNot
  */
-public class Acaologin extends HttpServlet {
+public class AcaoVenda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +35,10 @@ public class Acaologin extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Acaologin</title>");
+            out.println("<title>Servlet AcaoVenda</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Acaologin at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AcaoVenda at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,15 +56,7 @@ public class Acaologin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
-
-        String param = request.getParameter("param");
-
-        if (param.equals("logout")) {
-            HttpSession sessao = request.getSession();
-            sessao.invalidate();
-            response.sendRedirect("login.jsp");
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -81,40 +70,7 @@ public class Acaologin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
-
-        String param = request.getParameter("param");
-
-        String Login = request.getParameter("nome");
-        String Senha = request.getParameter("senha");
-
-        if (param.equals("Logar")) {
-
-            DAOUsuario du = new DAOUsuario();
-
-            if (du.logar(Login, Senha)) {
-
-                HttpSession sessao = ((HttpServletRequest) request).getSession();
-
-                sessao.setAttribute("usuarioLogado", Login);
-
-                encaminharPagina("home.jsp", request, response);
-
-            } else {
-
-                request.setAttribute("msgLogin", "erro");
-                encaminharPagina("login.jsp", request, response);
-            }
-        }
-    }
-
-    private void encaminharPagina(String pagina, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            RequestDispatcher rd = request.getRequestDispatcher(pagina);
-            rd.forward(request, response);
-        } catch (Exception e) {
-            System.out.println("Erro ao encaminhar: " + e);
-        }
+        processRequest(request, response);
     }
 
     /**

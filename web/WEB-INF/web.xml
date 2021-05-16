@@ -24,6 +24,10 @@
         <servlet-name>AcaoProduto</servlet-name>
         <servlet-class>Servlet.AcaoProduto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AcaoVenda</servlet-name>
+        <servlet-class>Servlet.AcaoVenda</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AcaoUsuario</servlet-name>
         <url-pattern>/AcaoUsuario</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>AcaoProduto</servlet-name>
         <url-pattern>/AcaoProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcaoVenda</servlet-name>
+        <url-pattern>/AcaoVenda</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -58,13 +58,6 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Compras</a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="">Comprar</a></li>
-                                <li><a class="dropdown-item" href="">Listar compras</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Listagem</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
                                 <li><a class="dropdown-item" href="Relatorios/RelatorioCliente.jsp" target="_blank">Clientes</a></li>
@@ -75,8 +68,19 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="Relatorios/RelatorioCliente.jsp" target="_blank">Vendas</a></li>
-                                <li><a class="dropdown-item" href="Relatorios/RelatorioFornecedor.jsp" target="_blank">Compras</a></li>
+                                <li><a class="dropdown-item" href="Relatorios/RelatorioVenda.jsp">Vendas</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Pesquisas</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                                <li><a class="dropdown-item" href="">Pesquisar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Gráficos</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                                <li><a class="dropdown-item" href="">Gráfico de Vendas</a></li>
                             </ul>
                         </li>
                     </ul>
