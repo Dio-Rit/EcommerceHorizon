@@ -12,6 +12,7 @@ import DAO.VendaDAO;
 import Entidade.Cliente;
 import Entidade.Produto;
 import Entidade.Venda;
+import Entidade.VendaProduto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -81,8 +82,9 @@ public class AcaoVenda extends HttpServlet {
             Produto usu = new DAOProduto().consultarId(Integer.parseInt(id));
 
             request.setAttribute("objProduto", usu);
+            System.out.println("Produto id = " + id);
 
-            encaminharPagina("CadastroProdutosVenda.jsp", request, response);
+            encaminharPagina("CadastroProdutosVenda1.jsp", request, response);
 
         } else if (param.equals("ExcluirVenda")) {
 
@@ -123,7 +125,43 @@ public class AcaoVenda extends HttpServlet {
             request.setAttribute("objCliente", venda);
             encaminharPagina("CadastroProdutosVenda.jsp", request, response);
 
-        } else if (param.equals("SalvarProdutos")) {
+        } else if (param.equals("SalvarProduto")) {
+
+            String venda = request.getParameter("Venda");
+            String produto = request.getParameter("Produto_id");
+            String quantidade = request.getParameter("Quantidade");
+            System.out.println(venda);
+            System.out.println(produto);
+            System.out.println(quantidade);
+
+            VendaDAO v = new VendaDAO();
+            DAOProduto p = new DAOProduto();
+
+            Produto z = p.consultarId(Integer.parseInt(produto));
+            Venda b = v.consultarId(Integer.parseInt(venda));
+
+            VendaProduto vp = new VendaProduto();
+            vp.setPreco(z.getPreco());
+            vp.setProdutoId(Integer.parseInt(produto));
+            vp.setQuantidade(Integer.parseInt(quantidade));
+            vp.setVendaId(Integer.parseInt(venda));
+            vp.setVendaClienteId(b.getClienteId());
+
+            request.setAttribute("objProduto", venda);
+            encaminharPagina("CadastroProdutosVenda1.jsp", request, response);
+
+        } else if (param.equals("FinalizarVenda")) {
+
+            String total = request.getParameter("ValorTotal");
+            String venda = request.getParameter("Venda");
+            System.out.println("Valor Total= " + total);
+            System.out.println("Venda do finaliza = "+venda);
+            
+            VendaDAO v = new VendaDAO();
+            
+            v.uptadeTotal(Integer.parseInt(venda), Double.parseDouble(total));
+            
+            response.sendRedirect("ListarVenda.jsp");
 
         }
     }

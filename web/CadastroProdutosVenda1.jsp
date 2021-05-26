@@ -20,8 +20,9 @@
     </head>
     <body>
 
-        <% Venda usu = (Venda) request.getAttribute("objCliente");
-            double x = 0;%>
+        <%  Venda l = new Venda();
+            Produto usu = (Produto) request.getAttribute("objProduto");
+            double x = 0;%>%>
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
             <div class="container-fluid">
@@ -50,7 +51,7 @@
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Produto">Produto</label>
-                        <input type="text" class="form-control" id="Produto" name="Produto" placeholder="" required="" disabled="">
+                        <input type="text" class="form-control" id="Produto" name="Produto" placeholder="" required="" disabled="" value="<%= usu.getNome()%>">
                     </div>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -62,7 +63,9 @@
                         <input type="text" class="form-control" id="Quantidade"  name="Quantidade" data-mask="00000000000000000000">
                     </div>
 
-
+                    <input type="hidden" id="Produto_id" name="Produto_id" value="<%= usu.getId()%>">
+                    <input type="hidden" id="Venda" name="Venda" value="<%= l.getId()%>">
+                    
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,6 +84,10 @@
                         </center>
                     </div>
 
+                    
+                    
+                    
+                    
 
                     <center>                   
                         <div class="container-fluid">
@@ -157,6 +164,7 @@
 
                         <form name="AcaoVenda" id="AcaoVenda" method="post" action="AcaoVenda?param=FinalizarVenda"">
                             <br>
+                            <input type="hidden" id="ValorTotal" name="ValorTotal" value="<%= x%>">
                             <center>
                                 <button type="submit" class="btn btn-dark">Finalizar compra</button>
                             </center>
