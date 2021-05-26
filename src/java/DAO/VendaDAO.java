@@ -8,6 +8,7 @@ package DAO;
 import Apoio.ConexaoBD;
 import Apoio.Formatacao;
 import Apoio.IDAO_T;
+import Entidade.ListaVenda;
 import Entidade.Produto;
 import Entidade.Venda;
 import java.net.URL;
@@ -40,6 +41,38 @@ public class VendaDAO implements IDAO_T<Venda> {
     }
 
     ResultSet resultadoQ = null;
+
+    public ArrayList<ListaVenda> consultarTodos() {
+
+        ArrayList<ListaVenda> venda = new ArrayList();
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "select * \n"
+                    + "from venda p, cliente x \n"
+                    + "where p.cliente_id = x.id \n"
+                    + "order by p.id desc";
+            
+            ResultSet resultado = st.executeQuery(sql);
+
+            while (resultado.next()) {
+                ListaVenda c = new ListaVenda();
+                c.setId(resultado.getInt("id"));
+                c.setData(resultado.getString("data"));
+                c.setValorTotal(resultado.getDouble("valor_total"));
+                c.setCliente(resultado.getString("nome"));
+                c.setX(resultado.getString("x"));
+
+                venda.add(c);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar Cliente: " + e);
+        }
+
+        return venda;
+    }
 
     @Override
     public String salvar(Venda o) {
@@ -101,7 +134,35 @@ public class VendaDAO implements IDAO_T<Venda> {
 
     @Override
     public Venda consultarId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Venda c = null;
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = ""
+                    + "SELECT * "
+                    + "FROM venda "
+                    + "WHERE id = " + id;
+
+            System.out.println("Sql: " + sql);
+
+            resultadoQ = st.executeQuery(sql);
+
+            while (resultadoQ.next()) {
+                c = new Venda();
+
+                c.setId(id);
+                c.setData(resultadoQ.getString("data"));
+                c.setValorTotal(resultadoQ.getDouble("valor_total"));
+                c.setClienteId(resultadoQ.getInt("cliente_id"));
+                c.setX(resultadoQ.getString("x")); 
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro consultar cliente = " + e);
+        }
+
+        return c;
     }
 
     public void uptadeTotal(int i, double d) {
@@ -268,18 +329,25 @@ public class VendaDAO implements IDAO_T<Venda> {
     public byte[] gerarRelatorio(String Ini, String Fini) {
         try {
             Connection conn = ConexaoBD.getInstance().getConnection();
-
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/Relatorios/Listagem_compra.jrxml"));
+            
+           URL teste = getClass().getResource("/Relatorios/Relatorio_compra_sub.jrxml"); 
+           
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/Relatorios/Relatorio_compra.jrxml"));
 
             Map parameters = new HashMap();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-            URL teste = getClass().getResource("/Relatorios/Relatorio_compra_sub.jasper");
-            parameters.put("data_inicial", sdf.parse(Ini));
-            parameters.put("data_final", sdf.parse(Fini));
-            parameters.put("SUBREPORT_DIR", teste.toString().replaceAll("file:/", ""));
-
+            System.out.println(Ini);
+            System.out.println(Fini);
+            System.out.println(teste);
+            String t = "file:/C:/Users/yNot/Desktop/Internet/EcommerceHorizon/src/java/Relatorios/Relatorio_compra_sub.jrxml";
+            
+            parameters.put("data_inicial", Ini);
+            parameters.put("data_final", Fini);
+         //   parameters.put("SUBREPORT_DIR", teste.toString().replaceAll("file:/", ""));
+            parameters.put("SUBREPORT_DIR", t);
+            
+            
             byte[] bytes = JasperRunManager.runReportToPdf(relatorio, parameters, conn);
+            
 
             return bytes;
         } catch (Exception e) {

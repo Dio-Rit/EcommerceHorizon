@@ -80,7 +80,7 @@
 
                     <div class="form-group col-md-3">
                         <label for="preco">Preço</label>
-                        <input type="text" class="form-control" id="preco" name="preco" aria-describedby="preco" placeholder="0000.00" required="" value="<%= usu.getPreco()%>" data-mask="000000000000000.00">
+                        <input type="text" class="form-control" id="preco" name="preco" aria-describedby="preco" placeholder="0000.00" required="" value="<%= usu.getPreco()%>" data-mask="##.##">
                     </div>
                     
                     <div class="form-group col-md-3">

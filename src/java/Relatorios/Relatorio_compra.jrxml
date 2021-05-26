@@ -6,17 +6,17 @@
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Horizon"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<parameter name="data_inicial" class="java.util.Date"/>
-	<parameter name="data_final" class="java.util.Date"/>
+	<parameter name="data_inicial" class="java.lang.String"/>
+	<parameter name="data_final" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select *
-from venda c, cliente cli
+		<![CDATA[select * 
+from venda c, cliente cli 
 where c.cliente_id = cli.id and
-c.data >= $P{data_inicial} and
-c.data <= $P{data_final}
+c.data >= to_date('$P!{data_inicial}', 'DD/MM/YYYY') AND 
+c.data <= to_date('$P!{data_final}', 'DD/MM/YYYY')
 order by c.id desc]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
@@ -146,7 +146,7 @@ order by c.id desc]]>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="53" y="0" width="47" height="20" uuid="24bcfefb-5dea-4751-b53e-27d753538665"/>
+				<reportElement x="53" y="0" width="57" height="20" uuid="24bcfefb-5dea-4751-b53e-27d753538665"/>
 				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -157,7 +157,7 @@ order by c.id desc]]>
 				<reportElement x="338" y="0" width="117" height="20" uuid="73c428c2-eef4-44d3-8829-c25b889e6df0"/>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
-			<subreport runToBottom="false">
+			<subreport>
 				<reportElement x="46" y="20" width="509" height="66" uuid="b0811754-a480-4de1-81d8-2e977bc39ec6"/>
 				<subreportParameter name="passa_id">
 					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>

@@ -5,8 +5,16 @@
  */
 package Servlet;
 
+import Apoio.Formatacao;
+import DAO.DAOCliente;
+import DAO.DAOProduto;
+import DAO.VendaDAO;
+import Entidade.Cliente;
+import Entidade.Produto;
+import Entidade.Venda;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +43,7 @@ public class AcaoVenda extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AcaoVenda</title>");            
+            out.println("<title>Servlet AcaoVenda</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AcaoVenda at " + request.getContextPath() + "</h1>");
@@ -56,7 +64,33 @@ public class AcaoVenda extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String param = request.getParameter("param");
+        String id = request.getParameter("id");
+
+        if (param.equals("SelecionaCliente")) {
+
+            Cliente usu = new DAOCliente().consultarId(Integer.parseInt(id));
+
+            request.setAttribute("objCliente", usu);
+
+            encaminharPagina("CadastroVenda1.jsp", request, response);
+
+        } else if (param.equals("SelecionaProduto")) {
+
+            Produto usu = new DAOProduto().consultarId(Integer.parseInt(id));
+
+            request.setAttribute("objProduto", usu);
+
+            encaminharPagina("CadastroProdutosVenda.jsp", request, response);
+
+        } else if (param.equals("ExcluirVenda")) {
+
+            VendaDAO b = new VendaDAO();
+            b.excluir(Integer.parseInt(request.getParameter("id")));
+            response.sendRedirect("ListarVenda.jsp");
+        }
+
     }
 
     /**
@@ -70,7 +104,37 @@ public class AcaoVenda extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String param = request.getParameter("param");
+        String id = request.getParameter("id");
+
+        if (param.equals("SalvarVenda")) {
+
+            Venda v = new Venda();
+            v.setData(Formatacao.getDataAtual());
+            v.setClienteId(Integer.parseInt(id));
+            v.setValorTotal(0);
+            v.setX("A");
+
+            VendaDAO x = new VendaDAO();
+            x.salvar(v);
+            Venda venda = new VendaDAO().consultarId((x.obterLancamentoId()));
+
+            request.setAttribute("objCliente", venda);
+            encaminharPagina("CadastroProdutosVenda.jsp", request, response);
+
+        } else if (param.equals("SalvarProdutos")) {
+
+        }
+    }
+
+    private void encaminharPagina(String pagina, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            RequestDispatcher rd = request.getRequestDispatcher(pagina);
+            rd.forward(request, response);
+        } catch (Exception e) {
+            System.out.println("Erro ao encaminhar: " + e);
+        }
     }
 
     /**

@@ -37,7 +37,7 @@
             </div>
         </nav>
         <div id="CadastroUsuario">
-            <form name="RelatorioVenda" id="RelatorioVenda" target="_blank" action="../Relatorios/Venda.jsp">
+            <form name="RelatorioVenda" id="RelatorioVenda" target="_blank" action="Venda.jsp">
                 <center>
                     <br> 
                     <br> 
@@ -53,8 +53,11 @@
                     <button type="submit" class="btn btn-dark">Gerar Relatório</button>
                 </center>
             </form>        
-            
+         
         </div>
+        
+       
+        
         <script src="../js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>"
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>

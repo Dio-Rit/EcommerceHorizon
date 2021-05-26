@@ -13,9 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
         <%
-            System.out.println("Data Inicial " + request.getParameter("DataIni"));
-            System.out.println("Data Final " + request.getParameter("DataFini"));
 
             byte[] bytes = new VendaDAO().gerarRelatorio(request.getParameter("DataIni"), request.getParameter("DataFini"));
 
@@ -26,7 +25,6 @@
             outStream.flush();
             outStream.close();
 
-            response.sendRedirect("../home.jsp");
         %>
     </body>
 </html>
