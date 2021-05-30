@@ -61,7 +61,7 @@
                         minValue: 0
                     },
                     vAxis: {
-                        title: 'Vendas por Cliente'
+                        title: ''
                     }
                 };
 
