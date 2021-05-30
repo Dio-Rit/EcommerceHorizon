@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.15.0.final using JasperReports Library version 6.15.0-dd49bfb94918336b8321d5507193f0169ead4e95  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatorio_venda" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6045a94f-b0f8-4fe3-b75c-d4cc9fc522a8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Horizon"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA["..//Relatorios//"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_inicial" class="java.lang.String"/>
+	<parameter name="data_final" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select *
+from compra v, fornecedor f
+where v.fornecedor_id = f.id and
+v.data >= to_date('$P!{data_inicial}', 'DD/MM/YYYY') AND 
+v.data <= to_date('$P!{data_final}', 'DD/MM/YYYY')
+order by v.id desc]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="data" class="java.sql.Date"/>
+	<field name="valor_total" class="java.math.BigDecimal"/>
+	<field name="x" class="java.lang.String"/>
+	<field name="fornecedor_id" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="cnpj" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="41" uuid="2043f2a2-3ef6-42ed-821e-d505466249fe"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horizon]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="126" height="20" uuid="dddc544e-d332-4ca3-a8e1-b005f59bcc73"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatório de Compras:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="23" width="555" height="1" uuid="8700aaa3-bc59-4a0c-92d4-5ab8286bc5fc"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="46" height="20" uuid="35b6c4f4-a79c-4dfc-babf-e74b90840f92"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="2" width="100" height="20" uuid="e11eaf08-4abd-409c-b0ed-68d6f2d460bb"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fornecedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="2" width="100" height="20" uuid="88e57444-d2f0-4ebd-9b7d-f0077fe18260"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="87" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="46" height="20" uuid="86d86880-311a-4c58-9194-fd965ed9c28d"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="0" width="100" height="20" uuid="5c9dc381-806c-444c-8c08-b32f36b091b8"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="0" width="47" height="20" uuid="72ce09f4-e3be-4263-991b-fe46aa74686d"/>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="46" y="20" width="509" height="66" uuid="2c5940ab-4124-4a78-adf6-9a4e8c7eeb70"/>
+				<subreportParameter name="passa_id">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["Relatorio_venda_sub.jrxml"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
