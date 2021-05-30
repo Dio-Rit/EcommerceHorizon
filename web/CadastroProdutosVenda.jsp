@@ -4,6 +4,7 @@
     Author     : yNot
 --%>
 
+<%@page import="DAO.VendaDAO"%>
 <%@page import="DAO.VendaProdutoDAO"%>
 <%@page import="Entidade.VendaProduto"%>
 <%@page import="Apoio.Formatacao"%>
@@ -15,13 +16,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Horizon - Cadastro de Produtos</title>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/navbar.css" rel="stylesheet">
     </head>
     <body>
 
-        <% Venda usu = (Venda) request.getAttribute("objCliente");
-            double x = 0;%>
+        <% Venda b = (Venda) request.getAttribute("objCliente");
+            double x = 0;
+            VendaDAO t = new VendaDAO();
+            Venda usu = t.PegaUltimoID();
+            System.out.println(usu.getId());%>
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
             <div class="container-fluid">
@@ -34,9 +41,9 @@
                     <div class="float-end" id="navbarsExampleDefault">
                         <ul class="navbar-nav mr-auto">
                         </ul>
-                        <form action="AcaoVenda?param=ExcluirVenda&id=<%= usu.getId()%>">
-                            <button type="submit" class="btn btn-dark">Voltar</input>
-                        </form>
+                        <div  class="float-end">
+                            <a class="btn btn-dark float-end" href="/EcommerceHorizon/AcaoVenda?param=ExcluirVenda1">Voltar</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,7 +66,7 @@
                     <br>
                     <div class="form-group col-md-3">
                         <label for="Quantidade">Quantidade</label>
-                        <input type="text" class="form-control" id="Quantidade"  name="Quantidade" data-mask="00000000000000000000">
+                        <input type="text" class="form-control" id="Quantidade"  name="Quantidade" required="" data-mask="00000000000000000000">
                     </div>
 
 
@@ -82,91 +89,93 @@
                     </div>
 
 
-                    <center>                   
-                        <div class="container-fluid">
+                    <center>   
+                        </form>
+                        <center>
+                            <div class="container-fluid">
 
 
-                            <div class="row">
-                                <main class="col-sm-12 ml-sm-auto col-md-12 " role="main">
-                                    <div>
-                                        <section layout:fragment="content">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-sm-10"></div>
-                                                </div>
+                                <div class="row">
+                                    <main class="col-sm-12 ml-sm-auto col-md-12 " role="main">
+                                        <div>
+                                            <section layout:fragment="content">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-sm-10"></div>
+                                                    </div>
 
-                                                <div class="row">
-                                                    <br>
-                                                </div>
+                                                    <div class="row">
+                                                        <br>
+                                                    </div>
 
-                                                <% ArrayList<VendaProduto> venda = new VendaProdutoDAO().consultarIdd(usu.getId()); %> 
+                                                    <% ArrayList<VendaProduto> venda = new VendaProdutoDAO().consultarIdd(usu.getId()); %> 
 
-                                                <div class="row">
-                                                    <table class="table table-striped ">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">Quantidade</th>
-                                                                <th scope="col">Preço</th>
-                                                                <th scope="col">Produto</th>
-                                                                <th scope="col"></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <%
-                                                                for (int i = 0; i < venda.size(); i++) {
-                                                                    VendaProduto categ = venda.get(i);
-                                                                    DAOProduto m = new DAOProduto();
-                                                                    Produto c = m.consultarId(categ.getProdutoId());
-                                                                    x += categ.getPreco() * categ.getQuantidade();
-                                                                    {
-                                                            %>
-                                                            <tr>
-                                                                <td><%= categ.getId()%></td>
-                                                                <td><%= categ.getQuantidade()%></td>
-                                                                <td><%= categ.getPreco()%></td>
-                                                                <td><%= c.getNome()%></td>
-                                                                <td>
-                                                                    <a href="AcaoVenda?param=ExcluirVenda&id=<%= categ.getId()%>" method="get" class="btn btn-danger" title="Excluir">
-                                                                        <i class="fas fa-trash"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>   
-                                                            <%
+                                                    <div class="row">
+                                                        <table class="table table-striped ">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">Quantidade</th>
+                                                                    <th scope="col">Preço</th>
+                                                                    <th scope="col">Produto</th>
+                                                                    <th scope="col"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <%
+                                                                    for (int i = 0; i < venda.size(); i++) {
+                                                                        VendaProduto categ = venda.get(i);
+                                                                        DAOProduto m = new DAOProduto();
+                                                                        Produto c = m.consultarId(categ.getProdutoId());
+                                                                        x += categ.getPreco() * categ.getQuantidade();
+                                                                        {
+                                                                %>
+                                                                <tr>
+                                                                    <td><%= categ.getId()%></td>
+                                                                    <td><%= categ.getQuantidade()%></td>
+                                                                    <td><%= categ.getPreco()%></td>
+                                                                    <td><%= c.getNome()%></td>
+                                                                    <td>
+                                                                        <a href="AcaoVenda?param=ExcluirProdutoVenda&id=<%= categ.getId()%>" method="get" class="btn btn-danger" title="Excluir">
+                                                                            <i class="fas fa-trash"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>   
+                                                                <%
+                                                                        }
                                                                     }
-                                                                }
-                                                            %>
-                                                        </tbody>
-                                                    </table>
+                                                                %>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
 
                                                 </div>
-
-                                            </div>
-                                        </section>
-                                    </div>
-                                </main>
+                                            </section>
+                                        </div>
+                                    </main>
+                                </div>
                             </div>
-                        </div>
+                        </center>
 
                         <div class="form-group col-md-3">
-                            <center>
-                                <label for="Total">Valor Total</label>
-                                <input type="text" class="form-control" id="Total" name="Total" placeholder="" required="" disabled="" value="<%= x%>">
+
+                            <label for="Total">Valor Total</label>
+                            <input type="text" class="form-control" id="Total" name="Total" placeholder="" required="" disabled="" value="<%= x%>">
                             </center>
                         </div>
-
-                        <form name="AcaoVenda" id="AcaoVenda" method="post" action="AcaoVenda?param=FinalizarVenda"">
-                            <br>
-                            <center>
-                                <button type="submit" class="btn btn-dark">Finalizar compra</button>
-                            </center>
-                            </div>
-
                     </center>
-                </center>
-            </form>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    </body>
-</html>
+                    <form name="AcaoVenda" id="AcaoVenda" method="post" action="AcaoVenda?param=FinalizarVenda"">
+                        <br>
+                        <input type="hidden" id="ValorTotal" name="ValorTotal" value="<%= x%>">
+                        <input type="hidden" id="Venda" name="Venda" value="<%= usu.getId()%>">
+                        <center>
+                            <button type="submit" class="btn btn-dark">Finalizar compra</button>
+                        </center>
+                    </form>
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+                    </body>
+                    </html>
 

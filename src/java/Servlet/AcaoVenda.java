@@ -9,6 +9,7 @@ import Apoio.Formatacao;
 import DAO.DAOCliente;
 import DAO.DAOProduto;
 import DAO.VendaDAO;
+import DAO.VendaProdutoDAO;
 import Entidade.Cliente;
 import Entidade.Produto;
 import Entidade.Venda;
@@ -67,6 +68,7 @@ public class AcaoVenda extends HttpServlet {
             throws ServletException, IOException {
 
         String param = request.getParameter("param");
+        System.out.println(param);
         String id = request.getParameter("id");
 
         if (param.equals("SelecionaCliente")) {
@@ -82,17 +84,40 @@ public class AcaoVenda extends HttpServlet {
             Produto usu = new DAOProduto().consultarId(Integer.parseInt(id));
 
             request.setAttribute("objProduto", usu);
-            System.out.println("Produto id = " + id);
 
             encaminharPagina("CadastroProdutosVenda1.jsp", request, response);
-
+  
         } else if (param.equals("ExcluirVenda")) {
-
             VendaDAO b = new VendaDAO();
+            VendaProdutoDAO s = new VendaProdutoDAO();
+            s.excluir1(Integer.parseInt(request.getParameter("id")));
             b.excluir(Integer.parseInt(request.getParameter("id")));
             response.sendRedirect("ListarVenda.jsp");
-        }
+            
+            
 
+            
+            
+            
+        } else if (param.equals("ExcluirVenda1")) {
+
+            VendaDAO b = new VendaDAO();
+            Venda x = b.PegaUltimoID();
+            b.excluir(x.getId());
+            response.sendRedirect("ListarVenda.jsp");
+
+            
+                
+            
+            
+            
+        } else if (param.equals("ExcluirProdutoVenda")) {
+
+            VendaProdutoDAO a = new VendaProdutoDAO();
+            a.excluir(Integer.parseInt(id));
+            response.sendRedirect("CadastroProdutosVenda.jsp");
+        }
+        
     }
 
     /**
@@ -127,40 +152,40 @@ public class AcaoVenda extends HttpServlet {
 
         } else if (param.equals("SalvarProduto")) {
 
-            String venda = request.getParameter("Venda");
+            DAOProduto p = new DAOProduto();
+            VendaDAO k = new VendaDAO();
+
             String produto = request.getParameter("Produto_id");
             String quantidade = request.getParameter("Quantidade");
-            System.out.println(venda);
-            System.out.println(produto);
-            System.out.println(quantidade);
 
-            VendaDAO v = new VendaDAO();
-            DAOProduto p = new DAOProduto();
-
+            Venda y = k.PegaUltimoID();
             Produto z = p.consultarId(Integer.parseInt(produto));
-            Venda b = v.consultarId(Integer.parseInt(venda));
 
             VendaProduto vp = new VendaProduto();
+
             vp.setPreco(z.getPreco());
             vp.setProdutoId(Integer.parseInt(produto));
             vp.setQuantidade(Integer.parseInt(quantidade));
-            vp.setVendaId(Integer.parseInt(venda));
-            vp.setVendaClienteId(b.getClienteId());
+            vp.setVendaId(y.getId());
+            vp.setVendaClienteId(y.getClienteId());
 
-            request.setAttribute("objProduto", venda);
-            encaminharPagina("CadastroProdutosVenda1.jsp", request, response);
+            VendaProdutoDAO f = new VendaProdutoDAO();
+            f.salvar(vp);
+
+            request.setAttribute("objVenda", y);
+            encaminharPagina("CadastroProdutosVenda.jsp", request, response);
 
         } else if (param.equals("FinalizarVenda")) {
 
             String total = request.getParameter("ValorTotal");
             String venda = request.getParameter("Venda");
             System.out.println("Valor Total= " + total);
-            System.out.println("Venda do finaliza = "+venda);
-            
+            System.out.println("Venda do finaliza = " + venda);
+
             VendaDAO v = new VendaDAO();
-            
+
             v.uptadeTotal(Integer.parseInt(venda), Double.parseDouble(total));
-            
+
             response.sendRedirect("ListarVenda.jsp");
 
         }

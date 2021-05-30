@@ -355,5 +355,34 @@ public class VendaDAO implements IDAO_T<Venda> {
         }
         return null;
     }
+    
+    public Venda PegaUltimoID() {
+        
+        Venda c = null;
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "SELECT * FROM venda WHERE id=(SELECT max(id) FROM venda)";
+
+            resultadoQ = st.executeQuery(sql);
+
+            while (resultadoQ.next()) {
+                
+                c = new Venda();
+
+                c.setId(resultadoQ.getInt("id"));
+                c.setData(resultadoQ.getString("data"));
+                c.setValorTotal(resultadoQ.getDouble("valor_total"));
+                c.setClienteId(resultadoQ.getInt("cliente_id"));
+                c.setX(resultadoQ.getString("x")); 
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao pegar ultimo ID = " + e);
+        }
+
+        return c;
+    }
 
 }

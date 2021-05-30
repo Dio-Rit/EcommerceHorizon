@@ -4,6 +4,7 @@
     Author     : yNot
 --%>
 
+<%@page import="DAO.VendaDAO"%>
 <%@page import="DAO.VendaProdutoDAO"%>
 <%@page import="Entidade.VendaProduto"%>
 <%@page import="Apoio.Formatacao"%>
@@ -15,14 +16,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Horizon - Cadastro de Produtos</title>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/navbar.css" rel="stylesheet">
     </head>
     <body>
 
-        <%  Venda l = new Venda();
+        <%  VendaDAO h = new VendaDAO();
+            Venda l = h.PegaUltimoID();
+
             Produto usu = (Produto) request.getAttribute("objProduto");
-            double x = 0;%>%>
+            double x = 0;%>
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
             <div class="container-fluid">
@@ -35,9 +41,9 @@
                     <div class="float-end" id="navbarsExampleDefault">
                         <ul class="navbar-nav mr-auto">
                         </ul>
-                        <form action="AcaoVenda?param=ExcluirVenda&id=<%= usu.getId()%>">
-                            <button type="submit" class="btn btn-dark">Voltar</input>
-                        </form>
+                        <div  class="float-end">
+                            <a class="btn btn-dark float-end" href="/EcommerceHorizon/AcaoVenda?param=ExcluirVenda1">Voltar</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,8 +70,7 @@
                     </div>
 
                     <input type="hidden" id="Produto_id" name="Produto_id" value="<%= usu.getId()%>">
-                    <input type="hidden" id="Venda" name="Venda" value="<%= l.getId()%>">
-                    
+
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,12 +89,8 @@
                         </center>
                     </div>
 
-                    
-                    
-                    
-                    
-
-                    <center>                   
+                    <center>
+                        </form>
                         <div class="container-fluid">
 
 
@@ -106,7 +107,7 @@
                                                     <br>
                                                 </div>
 
-                                                <% ArrayList<VendaProduto> venda = new VendaProdutoDAO().consultarIdd(usu.getId()); %> 
+                                                <%ArrayList<VendaProduto> venda = new VendaProdutoDAO().consultarIdd(l.getId());%> 
 
                                                 <div class="row">
                                                     <table class="table table-striped ">
@@ -134,7 +135,7 @@
                                                                 <td><%= categ.getPreco()%></td>
                                                                 <td><%= c.getNome()%></td>
                                                                 <td>
-                                                                    <a href="AcaoVenda?param=ExcluirVenda&id=<%= categ.getId()%>" method="get" class="btn btn-danger" title="Excluir">
+                                                                    <a href="AcaoVenda?param=ExcluirProdutoVenda&id=<%= categ.getId()%>" method="get" class="btn btn-danger" title="Excluir">
                                                                         <i class="fas fa-trash"></i>
                                                                     </a>
                                                                 </td>
@@ -161,20 +162,19 @@
                                 <input type="text" class="form-control" id="Total" name="Total" placeholder="" required="" disabled="" value="<%= x%>">
                             </center>
                         </div>
-
-                        <form name="AcaoVenda" id="AcaoVenda" method="post" action="AcaoVenda?param=FinalizarVenda"">
-                            <br>
-                            <input type="hidden" id="ValorTotal" name="ValorTotal" value="<%= x%>">
-                            <center>
-                                <button type="submit" class="btn btn-dark">Finalizar compra</button>
-                            </center>
-                            </div>
-
                     </center>
                 </center>
-            </form>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    </body>
-</html>
+
+                <form name="AcaoVenda" id="AcaoVenda" method="post" action="AcaoVenda?param=FinalizarVenda"">
+                    <br>
+                    <input type="hidden" id="ValorTotal" name="ValorTotal" value="<%= x%>">
+                    <input type="hidden" id="Venda" name="Venda" value="<%= l.getId()%>">
+                    <center>
+                        <button type="submit" class="btn btn-dark">Finalizar compra</button>
+                    </center>
+                </form>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+                </body>
+                </html>
 

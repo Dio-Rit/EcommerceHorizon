@@ -51,7 +51,7 @@
                     <br>
                     <div class="form-group col-md-3">
                         <label for="Cliente">Cliente</label>
-                        <input type="text" class="form-control" id="Cliente" name="Cliente" placeholder="" required="" disabled="">
+                        <input type="text" class="form-control" id="Cliente" name="Cliente" required disabled>
                     </div>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">

@@ -73,8 +73,25 @@ public class VendaProdutoDAO implements IDAO_T<VendaProduto> {
         }
     }
 
+    public String excluir1(int id) {
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "DELETE FROM venda_produto "
+                    + "WHERE venda_id = " + id;
+
+            int resultado = st.executeUpdate(sql);
+
+            return null;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao excluir produto da venda = " + e);
+            return e.toString();
+        }
+    }
+
     public ArrayList<VendaProduto> consultarIdd(int id) {
-        ArrayList<VendaProduto> vp = new ArrayList(); 
+        ArrayList<VendaProduto> vp = new ArrayList();
 
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
@@ -83,31 +100,32 @@ public class VendaProdutoDAO implements IDAO_T<VendaProduto> {
                     + "SELECT * "
                     + "FROM venda_produto "
                     + "WHERE venda_id = " + id
-                    + "order by id desc";
+                    + " order by id desc";
 
             ResultSet resultado = st.executeQuery(sql);
 
-            while (resultadoQ.next()) {
+            System.out.println(sql);
+
+            while (resultado.next()) {
                 VendaProduto c = new VendaProduto();
                 c.setId(resultado.getInt("id"));
                 c.setQuantidade(resultado.getInt("quantidade"));
                 c.setPreco(resultado.getDouble("preco"));
                 c.setProdutoId(resultado.getInt("produto_id"));
                 c.setVendaId(resultado.getInt("venda_id"));
-                c.setVendaClienteId(resultado.getInt("venda_cliente_id")); 
-                
+                c.setVendaClienteId(resultado.getInt("venda_cliente_id"));
+
                 vp.add(c);
             }
 
         } catch (Exception e) {
-            System.out.println("Erro consultar Produtos da venda = " + e);
+            System.out.println("Erro taaaa aquiiii = " + e);
         }
 
         return vp;
     }
-    
 
-    public String cancelaVenda(int id){
+    public String cancelaVenda(int id) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
@@ -128,6 +146,5 @@ public class VendaProdutoDAO implements IDAO_T<VendaProduto> {
     public VendaProduto consultarId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
 }
