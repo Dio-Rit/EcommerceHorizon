@@ -79,7 +79,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Gráficos</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="">Gráfico de Vendas</a></li>
+                                <li><a class="dropdown-item" href="Grafico.jsp">Gráfico de Vendas</a></li>
                             </ul>
                         </li>
                     </ul>
