@@ -171,6 +171,7 @@
                         <input type="hidden" id="Venda" name="Venda" value="<%= usu.getId()%>">
                         <center>
                             <button type="submit" class="btn btn-dark">Finalizar compra</button>
+
                         </center>
                     </form>
 

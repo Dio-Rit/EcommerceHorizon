@@ -171,6 +171,7 @@
                     <input type="hidden" id="Venda" name="Venda" value="<%= l.getId()%>">
                     <center>
                         <button type="submit" class="btn btn-dark">Finalizar compra</button>
+
                     </center>
                 </form>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
