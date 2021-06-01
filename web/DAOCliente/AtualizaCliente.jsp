@@ -70,7 +70,7 @@
 
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" aria-describedby="nome" required="" value="<%= usu.getNome()%>">
+                        <input type="text" class="form-control" id="nome" name="nome" aria-describedby="nome" required="" value="<%= usu.getNome()%>" data-mask="SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS">
                     </div>
 
                     <div class="form-group col-md-3">

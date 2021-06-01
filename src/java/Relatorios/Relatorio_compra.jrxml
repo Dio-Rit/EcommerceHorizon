@@ -128,7 +128,7 @@ order by c.id desc]]>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nome]]></text>
+				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="338" y="0" width="117" height="20" uuid="612c9f4d-bc9c-4b24-97ec-598638200bb1"/>

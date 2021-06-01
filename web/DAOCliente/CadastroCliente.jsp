@@ -63,7 +63,7 @@
                 <center>
                     <div class="form-group col-md-3">
                         <label for="Nome">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" aria-describedby="Nome" placeholder="Digite seu nome" required="" data-mask="SS">
+                        <input type="text" class="form-control" id="nome" name="nome" aria-describedby="Nome" placeholder="Digite seu nome" required="" data-mask="SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS">
                     </div>
 
                     <div class="form-group col-md-3">
