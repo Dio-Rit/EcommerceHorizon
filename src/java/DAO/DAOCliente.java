@@ -213,4 +213,62 @@ public class DAOCliente implements IDAO_T<Cliente> {
         return null;
     }
 
+    public ArrayList<Cliente> consultar(String nome, String cpf, String dataInicial, String dataFinal) {
+
+        ArrayList<Cliente> cliente = new ArrayList();
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "SELECT * \n"
+                    + "	FROM cliente \n"
+                    + " WHERE ";
+            
+            if (dataFinal != "") {
+                sql += " data_nsci >= to_date('" + dataInicial + "', 'DD/MM/YYYY') AND \n"
+                        + "data_nsci <= to_date('" + dataFinal + "', 'DD/MM/YYYY')";
+            }
+
+            if (dataFinal == "") {
+                dataFinal = "30/12/9999";
+                sql += " data_nsci >= to_date('" + dataInicial + "', 'DD/MM/YYYY') AND \n"
+                        + "data_nsci <= to_date('" + dataFinal + "', 'DD/MM/YYYY')";
+            }
+
+            if (nome != "") {
+                sql += "AND nome ILIKE '%" + nome + "%'\n";
+            }
+
+            if (cpf.length() > 0) {
+                sql += " AND cpf ILIKE '%" + cpf + "%'";
+            }
+
+            sql += " AND x = 'A'";
+            sql += " ORDER BY nome";
+
+            System.out.println("SQL: " + sql);
+
+            resultadoQ = st.executeQuery(sql);
+
+            Cliente c;
+            while (resultadoQ.next()) {
+                c = new Cliente();
+
+                c.setId(resultadoQ.getInt("id"));
+                c.setNome(resultadoQ.getString("nome"));
+                c.setCpf(resultadoQ.getString("cpf"));
+                c.setDataNsci(resultadoQ.getString("data_nsci"));
+                c.setEmail(resultadoQ.getString("email"));
+                c.setDecricao(resultadoQ.getString("descricao"));
+                c.setX(resultadoQ.getString("x"));
+
+                cliente.add(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("pessoas.l: " + cliente.size());
+        return cliente;
+    }
+
 }

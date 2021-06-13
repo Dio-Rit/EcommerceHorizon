@@ -19,7 +19,6 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 
-
 /**
  *
  * @author yNot
@@ -133,7 +132,7 @@ public class DAOProduto implements IDAO_T<Produto> {
 
         return p;
     }
-    
+
     public ArrayList<Produto> consultarTodos() {
 
         ArrayList<Produto> produto = new ArrayList();
@@ -150,7 +149,7 @@ public class DAOProduto implements IDAO_T<Produto> {
             while (resultado.next()) {
                 Produto c = new Produto();
                 c.setId(resultado.getInt("id"));
-                c.setNome(resultado.getString("nome")); 
+                c.setNome(resultado.getString("nome"));
                 c.setQuantidade(resultado.getInt("quantidade"));
                 c.setPreco(resultado.getDouble("preco"));
                 c.setDescricao(resultado.getString("descricao"));
@@ -165,7 +164,6 @@ public class DAOProduto implements IDAO_T<Produto> {
 
         return produto;
     }
-
 
     public boolean Validacontem(String nome) {
         try {
@@ -213,8 +211,8 @@ public class DAOProduto implements IDAO_T<Produto> {
         }
 
     }
-    
-        public byte[] gerarRelatorio() {
+
+    public byte[] gerarRelatorio() {
         try {
             Connection conn = ConexaoBD.getInstance().getConnection();
 
@@ -230,5 +228,58 @@ public class DAOProduto implements IDAO_T<Produto> {
         }
         return null;
     }
-    
+
+    public ArrayList<Produto> consultar(String nome, String precoInicial, String precoFinal, String quantidade) {
+
+        ArrayList<Produto> produtos = new ArrayList();
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "SELECT * \n"
+                    + "	FROM produto\n"
+                    + " WHERE ";
+
+            if (precoFinal != "") {
+
+                sql += "preco >=" + precoInicial + "  AND preco <=" + precoFinal + "\n";
+            }
+            if (precoFinal == "") {
+                precoFinal = "999999999999999999999999999999999";
+                sql += "preco >=" + precoInicial + "  AND preco <=" + precoFinal + "\n";
+            }
+
+            if (quantidade.length() > 0) {
+                sql += " AND quantidade ILIKE '%" + quantidade + "%'\n";
+            }
+
+            if (nome.length() > 0) {
+                sql += " AND nome ILIKE '%" + nome + "%'";
+            }
+
+            sql += " AND x = 'A'";
+            sql += " ORDER BY nome";
+
+            System.out.println("SQL: " + sql);
+
+            resultadoQ = st.executeQuery(sql);
+
+            Produto produto;
+            while (resultadoQ.next()) {
+                produto = new Produto();
+
+                produto.setId(resultadoQ.getInt("id"));
+                produto.setNome(resultadoQ.getString("nome"));
+                produto.setQuantidade(Integer.parseInt(resultadoQ.getString("quantidade")));
+                produto.setPreco(Double.parseDouble(resultadoQ.getString("preco")));
+                produto.setDescricao(resultadoQ.getString("descricao"));
+                produto.setX(resultadoQ.getString("x"));
+                produtos.add(produto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("produtos.l: " + produtos.size());
+        return produtos;
+    }
 }

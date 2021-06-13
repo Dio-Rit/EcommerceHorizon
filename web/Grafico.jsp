@@ -36,7 +36,7 @@
 
             <%
                 VendaDAO x = new VendaDAO();
-                ArrayList<ListaVenda> venda = x.consultarTodos();
+                ArrayList<ListaVenda> venda = x.consultarTodosGrafico();
 
                 String Pontos = "[['Cliente', 'Valor total da Venda'],";
 

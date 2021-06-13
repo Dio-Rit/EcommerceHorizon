@@ -20,7 +20,7 @@ public class ConexaoBD {
     public ConexaoBD() {
         try {
             String dbdriver = "org.postgresql.Driver";
-            String dburl = "jdbc:postgresql://localhost:5432/Horizon";
+            String dburl = "jdbc:postgresql://localhost:5432/Horizonn";
             String dbuser = "postgres";
             String dbsenha = "postgres";
 

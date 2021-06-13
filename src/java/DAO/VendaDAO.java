@@ -73,6 +73,38 @@ public class VendaDAO implements IDAO_T<Venda> {
 
         return venda;
     }
+    
+    public ArrayList<ListaVenda> consultarTodosGrafico() {
+
+        ArrayList<ListaVenda> venda = new ArrayList();
+
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "select * \n"
+                    + "from venda p, cliente x \n"
+                    + "where p.cliente_id = x.id \n"
+                    + "order by p.id desc";
+
+            ResultSet resultado = st.executeQuery(sql);
+
+            while (resultado.next()) {
+                ListaVenda c = new ListaVenda();
+                c.setId(resultado.getInt("id"));
+                c.setData(resultado.getString("data"));
+                c.setValorTotal(resultado.getDouble("valor_total"));
+                c.setCliente(resultado.getString("nome"));
+                c.setX(resultado.getString("x"));
+
+                venda.add(c);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar Cliente: " + e);
+        }
+
+        return venda;
+    }
 
     @Override
     public String salvar(Venda o) {

@@ -73,7 +73,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Pesquisas</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                                <li><a class="dropdown-item" href="">Pesquisar</a></li>
+                                <li><a class="dropdown-item" href="PesquisaProduto.jsp">Pesquisar Produtos</a></li>
+                                <li><a class="dropdown-item" href="PesquisarCliente.jsp">Pesquisar Clientes</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
