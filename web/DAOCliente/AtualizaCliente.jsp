@@ -4,6 +4,7 @@
     Author     : yNot
 --%>
 
+<%@page import="Apoio.Formatacao"%>
 <%@page import="Entidade.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -77,10 +78,11 @@
                         <label for="CPF">CPF</label>
                         <input type="text" class="form-control" id="cpf" name="cpf" aria-describedby="cpf" placeholder="000.000.000-00" required="" value="<%= usu.getCpf()%>" data-mask="000.000.000-00">
                     </div>
-
+                    
+                        <%String x = Formatacao.ajustaDataDMA(usu.getDataNsci());%>
                     <div class="form-group col-md-3">
                         <label for="Data_nsci">Data Nascimento</label>
-                        <input type="text" class="form-control" id="data_nsci" name="data_nsci" placeholder="00/00/0000" required="" value="<%= usu.getDataNsci()%>" data-mask="00/00/0000">
+                        <input type="text" class="form-control" id="data_nsci" name="data_nsci" placeholder="00/00/0000" required="" value="<%= x%>" data-mask="00/00/0000">
                     </div>
 
                     <div class="form-group col-md-3">

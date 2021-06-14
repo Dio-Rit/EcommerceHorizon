@@ -9,7 +9,12 @@ function validardados() {
 
     nome = document.AcaoUsuario.Nome.value;
     login = document.AcaoUsuario.Login.value;
-    senha = document.AcaoUsuario.Senha.value;
+    if (document.AcaoUsuario.Senha.value != null) {
+        senha = document.AcaoUsuario.Senha1.value;
+    } else {
+        senha = document.AcaoUsuario.Senha1.value;
+    }
+
 
     if (nome.length < 5)
     {

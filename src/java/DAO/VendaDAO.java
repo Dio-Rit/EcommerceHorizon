@@ -73,7 +73,7 @@ public class VendaDAO implements IDAO_T<Venda> {
 
         return venda;
     }
-    
+
     public ArrayList<ListaVenda> consultarTodosGrafico() {
 
         ArrayList<ListaVenda> venda = new ArrayList();
@@ -81,20 +81,17 @@ public class VendaDAO implements IDAO_T<Venda> {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
-            String sql = "select * \n"
-                    + "from venda p, cliente x \n"
-                    + "where p.cliente_id = x.id \n"
-                    + "order by p.id desc";
+            String sql = "select pp.nome, SUM(valor_total) as valor_total\n"
+                       + "from venda p\n"
+                       + "left join cliente pp on p.cliente_id = pp.id group by pp.nome";
 
             ResultSet resultado = st.executeQuery(sql);
 
             while (resultado.next()) {
                 ListaVenda c = new ListaVenda();
-                c.setId(resultado.getInt("id"));
-                c.setData(resultado.getString("data"));
+                
                 c.setValorTotal(resultado.getDouble("valor_total"));
                 c.setCliente(resultado.getString("nome"));
-                c.setX(resultado.getString("x"));
 
                 venda.add(c);
             }

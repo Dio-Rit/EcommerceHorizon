@@ -250,7 +250,7 @@ public class DAOProduto implements IDAO_T<Produto> {
             }
 
             if (quantidade.length() > 0) {
-                sql += " AND quantidade ILIKE '%" + quantidade + "%'\n";
+                sql += " AND quantidade = " + quantidade + "\n";
             }
 
             if (nome.length() > 0) {

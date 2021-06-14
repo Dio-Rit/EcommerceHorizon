@@ -74,9 +74,11 @@
                         <input type="text" class="form-control" id="Login" name="Login" aria-describedby="Login" placeholder="Digite seu login (mínimo 3 caracteres)" required="" value="<%= usu.getLogin()%>">
                     </div>
 
+                    <input type="hidden" id="senha1" name="senha1" value="<%= usu.getSenha()%>">
+                    
                     <div class="form-group col-md-3">
                         <label for="Senha">Senha</label>
-                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha (mínimo 8 caracteres)" required="">
+                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="Digite sua senha (mínimo 8 caracteres)">
                     </div>
 
                     <br>

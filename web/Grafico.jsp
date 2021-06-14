@@ -38,7 +38,7 @@
                 VendaDAO x = new VendaDAO();
                 ArrayList<ListaVenda> venda = x.consultarTodosGrafico();
 
-                String Pontos = "[['Cliente', 'Valor total da Venda'],";
+                String Pontos = "[['Cliente', 'Valor total das Vendas'],";
 
                 for (int i = 0; i < venda.size(); i++) {
                     ListaVenda categ = venda.get(i);
@@ -54,7 +54,7 @@
 
 
                 var options = {
-                    title: 'Gráfico de Vendas Realizadas',
+                    title: 'Gráfico de Vendas Realizadas para cada Cliente',
                     chartArea: {width: '50%'},
                     hAxis: {
                         title: '',

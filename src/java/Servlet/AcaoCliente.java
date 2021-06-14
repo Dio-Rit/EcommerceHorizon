@@ -70,6 +70,7 @@ public class AcaoCliente extends HttpServlet {
 
             request.setAttribute("objCliente", usu);
             System.out.println(usu.getId());
+            System.out.println("");
 
             encaminharPagina("/DAOCliente/AtualizaCliente.jsp", request, response);
 
@@ -145,8 +146,11 @@ public class AcaoCliente extends HttpServlet {
             Cliente u = new Cliente();
 
             u.setId(Integer.parseInt(request.getParameter("id")));
+            System.out.println("id: "+request.getParameter("id"));
             u.setNome(request.getParameter("nome"));
+            System.out.println("nome: "+request.getParameter("nome"));
             u.setCpf(request.getParameter("cpf"));
+            System.out.println("cpf: "+ request.getParameter("cpf"));
             u.setDataNsci(request.getParameter("data_nsci"));
             u.setEmail(request.getParameter("email"));
             u.setDecricao(request.getParameter("descricao"));

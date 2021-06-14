@@ -137,7 +137,12 @@ public class AcaoUsuario extends HttpServlet {
             u.setId(Integer.parseInt(request.getParameter("id")));
             u.setNome(request.getParameter("Nome"));
             u.setLogin(request.getParameter("Login"));
-            u.setSenha(request.getParameter("Senha"));
+            if (request.getParameter("Senha") == null) {
+                u.setSenha(request.getParameter("Senha1"));
+            } else {
+                u.setSenha(request.getParameter("Senha"));
+            }
+
             u.setX("A");
 
             DAOUsuario a = new DAOUsuario();

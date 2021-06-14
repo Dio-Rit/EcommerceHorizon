@@ -4,6 +4,7 @@
     Author     : yNot
 --%>
 
+<%@page import="Apoio.Formatacao"%>
 <%@page import="DAO.DAOCliente"%>
 <%@page import="Entidade.Cliente"%>
 <%@page import="java.util.ArrayList"%>
@@ -103,7 +104,7 @@
                                                 <td><%= categ.getId()%></td>
                                                 <td><%= categ.getNome() %></td>
                                                 <td><%= categ.getCpf()%></td>
-                                                <td><%= categ.getDataNsci()%></td>
+                                                <td><%= Formatacao.ajustaDataDMA(categ.getDataNsci())%></td>
                                                 <td><%= categ.getEmail()%></td>
                                                 <td><%= categ.getDecricao()%></td>
                                                 <td>

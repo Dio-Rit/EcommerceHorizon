@@ -140,7 +140,7 @@ public class AcaoProduto extends HttpServlet {
             u.setNome(request.getParameter("nome"));
             u.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
             u.setPreco(Double.parseDouble(request.getParameter("preco")));
-            u.setDescricao("descricao");
+            u.setDescricao(request.getParameter("descricao"));
             u.setX("A");
 
             DAOProduto a = new DAOProduto();
