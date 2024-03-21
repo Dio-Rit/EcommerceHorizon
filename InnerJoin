@@ -1,0 +1,26 @@
+select * from cliente;
+select * from compra;
+select * from fornecedor;
+select * from venda;
+select * from produto;
+select * from compra_produto;
+select * from venda_produto;
+
+select produto.nome as "Produto", venda_produto.quantidade as "Quantidade", venda.valor_total as "Valor da Venda", cliente.nome as "Cliente" from venda_produto
+	inner join produto on produto.id = venda_produto.produto_id
+	inner join venda on venda.id = venda_produto.venda_id
+	inner join cliente on cliente.id = venda_produto.venda_cliente_id
+
+
+select produto.nome as "Produto", compra_produto.quantidade as "Quantidade", compra.valor_total as "Valor da Compra", fornecedor.nome as "Fornecedor" from compra_produto
+	inner join produto on compra_produto.produto_id = produto.id
+	inner join compra on compra_produto.compra_id = compra.id
+	inner join fornecedor on compra_produto.compra_fornecedor_id = fornecedor.id
+
+
+select venda.data as "Dia da venda", venda.valor_total as "Valor total da Venda", cliente.nome as Cliente from venda
+	inner join cliente on venda.cliente_id = cliente.id 
+
+
+select compra.data as "Dia da compra", compra.valor_total as "Valor total da Compra", fornecedor.nome as Fornecedor from compra
+inner join fornecedor on compra.fornecedor_id = fornecedor.id
